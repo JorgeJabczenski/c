@@ -12,20 +12,29 @@ void imprimir_vetor(int v[], int t);
 
 int main(){
 
-    int vetor[N];
+    int tam;
+
+    scanf("%d", &tam);
+    int vetor[tam];
 
     // Gera uma semente aleatória
     srand(time(NULL));
 
     // Gerar vetor de aleatórios
-    gerar_vetor(vetor, N);
+//    gerar_vetor(vetor, N);
+
+
+    for (int i = 0; i < tam; i++){
+        scanf("%d", &vetor[i]);
+    }
+
     printf("Vetor desordenado: ");
-    imprimir_vetor(vetor, N);
+    imprimir_vetor(vetor, tam);
 
     // Organizar com Bubble Sort
-    organizar_vetor(vetor, N);
-    printf("Vetor ordenado:    ");
-    imprimir_vetor(vetor, N);
+    organizar_vetor(vetor, tam);
+    printf("Vetor ordenado: ");
+    imprimir_vetor(vetor, tam);
 
     return 0;
 }
