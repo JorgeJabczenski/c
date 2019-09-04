@@ -24,7 +24,7 @@ int main(){
 
     // Organizar com Bubble Sort
     organizar_vetor(vetor, N);
-    printf("Vetor ordenado: ");
+    printf("Vetor ordenado:    ");
     imprimir_vetor(vetor, N);
 
     return 0;
@@ -37,19 +37,10 @@ void gerar_vetor(int v[], int t){
 }
 
 void organizar_vetor(int v[], int t){
-    int c = 0;
-
-    for (int i = 0; i < t-1; i++){
-        for (int j = 0; j < (t-i) - 1; j++){
-            if (v[j] > v[j+1]){
-                int aux = v[j];
-                v[j] = v[j+1];
-                v[j+1] = aux;
-            }
-            c++;
-        }
+    for (int i = 0; i < t; i ++){
+        
     }
-    //printf("%d \n", c);
+
 }
 
 void imprimir_vetor(int v[], int t){
