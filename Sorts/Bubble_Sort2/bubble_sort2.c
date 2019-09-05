@@ -8,29 +8,28 @@ int main(){
     int tam;
 
     scanf("%d", &tam);
-    int vetor[tam];
+	int vetor[tam];
 
     for (int i = 0; i < tam; i++){
-        scanf("%d", &vetor[i]);
-    }
+		scanf("%d", &vetor[i]);
+	}
 
     organizar_vetor(vetor, tam);
-
     return 0;
 }
 
 void organizar_vetor(int v[], int t){
-    for (int i = 1; i < t; i++)
-    {
-        int key = v[i];
-        int j = i-1;
-        while(key < v[j] && j >= 0)
-        {
-            v[j+1] = v[j];
-            j--;
-            
+    for (int i = 0; i < t-1; i++){
+        int mudou = 1;
+        for (int j = 0; j < (t-i) - 1; j++){
+            if (v[j] > v[j+1]){
+                int aux = v[j];
+                v[j] = v[j+1];
+                v[j+1] = aux;
+                mudou = 0;
+            }
         }
-        v[j+1] = key;
+        if (mudou) break;
     }
 }
 
