@@ -28,13 +28,13 @@ int main(){
         scanf("%d", &vetor[i]);
     }
 
-    printf("Vetor desordenado: ");
-    imprimir_vetor(vetor, tam);
+   // printf("Vetor desordenado: ");
+   // imprimir_vetor(vetor, tam);
 
     // Organizar com Bubble Sort
     organizar_vetor(vetor, tam);
-    printf("Vetor ordenado: ");
-    imprimir_vetor(vetor, tam);
+    //printf("Vetor ordenado: ");
+    //imprimir_vetor(vetor, tam);
 
     return 0;
 }
