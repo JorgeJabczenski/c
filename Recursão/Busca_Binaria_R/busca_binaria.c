@@ -8,10 +8,17 @@ void gerar_vetor(int v[], int t){
         v[i] = rand() % 200;
 }
 
-void selection_sort(int v[], int t){
+int selection_sort_R(int v[], int t,int index){
 
-    
-
+    if (index == t-1)
+        return 0;
+    for (int i = index+1; i < t; i++)
+        if (v[i] < v[index]){
+            int aux  = v[i];
+            v[i]     = v[index];
+            v[index] = aux;
+        }
+    return selection_sort_R(v,t,index+1);
 }
 
 int busca_binaria_R(int v[], int x, int ini, int fim){
@@ -40,6 +47,11 @@ int main(){
     for (int i = 0; i < tam; i++) printf("%d ", vetor[i]);
     printf("\n");
     
+    selection_sort_R(vetor, tam, 0);
+    printf("Vetor ordenado : ");
+    for (int i = 0; i < tam; i++) printf("%d ", vetor[i]);
+    printf("\n");
+
     scanf("%d", &x);
     int achou = busca_binaria_R(vetor,x,0,MAX-1); 
     if (achou == -1){
