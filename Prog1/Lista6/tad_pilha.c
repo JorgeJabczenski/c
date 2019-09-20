@@ -15,7 +15,7 @@ int tamanho_pilha(tad_pilha p){
 	return p.topo;
 }
 
-int empilha(int x, tad_pilha *p){
+int empilha(char x, tad_pilha *p){
 	if ((*p).topo >= MAX)
 		return 0;
 	(*p).vetor[(*p).topo] = x;
@@ -23,7 +23,7 @@ int empilha(int x, tad_pilha *p){
 	return 1;
 }
 
-int desempilha (int *t, tad_pilha *p){
+int desempilha (char *t, tad_pilha *p){
 	if (pilha_vazia(*p))
 		return 0;
 	(*p).topo--;
@@ -31,7 +31,7 @@ int desempilha (int *t, tad_pilha *p){
 	return 1;
 }
 
-int topo(int *t, tad_pilha p){
+int topo(char *t, tad_pilha p){
 	if (pilha_vazia(p))
 		return 0;
 	*t = p.vetor[p.topo - 1];	
