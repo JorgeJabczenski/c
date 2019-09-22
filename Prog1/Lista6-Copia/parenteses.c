@@ -7,7 +7,6 @@ int main(){
     tad_pilha pilha;
 
     inicializa_pilha(&pilha);
-    printf("O TAMANHO DA PILHA É %d\n",tamanho_pilha(pilha));
 
     scanf("%c", &elemento);
 
@@ -17,22 +16,16 @@ int main(){
 
         if (elemento == '(' || elemento == '['|| elemento == '{')
             empilha(elemento, &pilha);
-        else if (elemento == ')' && top =='(')
+        else if ((elemento == ')' && top =='(') || (elemento == ']' && top =='[') || (elemento == '}' && top =='{'))
             desempilha(&top, &pilha);
-        else if (elemento == ']' && top =='[')
-            desempilha(&top, &pilha);
-        else if (elemento == '}' && top =='{')
-            desempilha(&top, &pilha);
-        else if (elemento == ')' || elemento == ']'|| elemento == '}'){
-            /*empilhar o caso que não deu certo para o tamanho da pilha nao finalizar em 0*/
-            empilha(elemento, &pilha);
-            break;
+        else if (elemento == ')' || elemento == ']'|| elemento == '}'){   
+            empilha(elemento, &pilha);   /* empilhar o caso que não deu certo para o tamanho da pilha nao finalizar em 0 */
+            break;                       /* break opcional, apenas diminui o tempo de execução */
         }
 
         scanf("%c", &elemento);
     }
 
-    printf("O TAMANHO FINAL DA PILHA É %d\n",tamanho_pilha(pilha));
     if (tamanho_pilha(pilha) != 0)
         printf("NAO\n");
     else 
