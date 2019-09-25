@@ -1,4 +1,4 @@
-#define MAX 100
+#define MAX 15
 
 struct pilha_s {
 	char vetor[MAX];
