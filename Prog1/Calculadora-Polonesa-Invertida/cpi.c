@@ -86,6 +86,9 @@ int main(){
                     break;
                 
                 default:
+                    printf("Comando Inválido\n");
+                    getchar();
+                    getchar();
                     break;
                 }
             }
