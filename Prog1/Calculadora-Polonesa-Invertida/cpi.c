@@ -11,6 +11,7 @@ int main(){
     float numero, n1, n2, res, lixo, temp;
     tad_pilha pilha;
 
+    printf("\033[H\033[J"); /* comando para limpar a tela */ 
     inicializa_pilha(&pilha);
     scanf("%s", entrada);
 
@@ -20,7 +21,7 @@ int main(){
         if (isdigit(entrada[0]) || ((entrada[0] == '-') && isdigit(entrada[1]))){
             numero = atof(entrada);
             if (!empilha(numero, &pilha)){
-                printf("Pilha cheia!\n");
+                printf("Pilha cheia!\n<Aperte ENTER para continuar>");
                 getchar();
                 getchar();
             }
@@ -78,15 +79,29 @@ int main(){
                 case 'c': /* copia o ultimo valor inserido */
                     if (topo(&temp, pilha))
                         if (!empilha(temp, &pilha)){
-                            printf("Pilha cheia!\n");
+                            printf("Pilha cheia!\n<Aperte ENTER para continuar>");
                             getchar();
                             getchar();
                         }
                             
                     break;
+
+                case 's': /* troca os ultimos dois valores da pilha */
+                    if (tamanho_pilha(pilha) >= 2){
+                        desempilha(&n1, &pilha);
+                        desempilha(&n2, &pilha);
+                        empilha   (n1 , &pilha);
+                        empilha   (n2 , &pilha);
+                    } else {
+                        printf("Comando Inválido\n<Aperte ENTER para continuar>");
+                        getchar();
+                        getchar();
+                    }
+                
+                    break;
                 
                 default:
-                    printf("Comando Inválido\n");
+                    printf("Comando Inválido\n<Aperte ENTER para continuar>");
                     getchar();
                     getchar();
                     break;
@@ -102,7 +117,7 @@ int main(){
     if (!topo(&res, pilha)){
         res = 0;
     }
-    printf("\n\n%0.3f \n\n---fim do programa---\n", res);
+    printf("\n\n%0.3f \n\n---Fim do Programa---\n", res);
 
     return 0;
 }

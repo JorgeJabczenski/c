@@ -42,7 +42,7 @@ int imprime_pilha(tad_pilha p){
     int i;
     if (p.topo > -1)
         for (i = 0; i <= p.topo; i++){
-            printf("%0.3f\n", p.vetor[i]);
+            printf("%d : %0.3f\n",p.topo - i + 1, p.vetor[i]);
         }
     return 1;   
 }
