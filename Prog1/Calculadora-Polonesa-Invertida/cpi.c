@@ -5,6 +5,8 @@
 
 #define MAX_ENTRADA 20
 
+void ajuda();
+
 int main(){
 
     char entrada[MAX_ENTRADA];
@@ -99,6 +101,10 @@ int main(){
                     }
                 
                     break;
+
+                case 'h': /* copia o ultimo valor inserido */
+                    ajuda();      
+                    break;
                 
                 default:
                     printf("Comando Inválido\n<Aperte ENTER para continuar>");
@@ -120,4 +126,20 @@ int main(){
     printf("\n\n%0.3f \n\n---Fim do Programa---\n", res);
 
     return 0;
+}
+
+void ajuda(){
+
+    printf("\033[H\033[J"); /* comando para limpar a tela */ 
+    printf("\n MENU DE AJUDA\n\n");
+    printf(" q : sair do programa\n");
+    printf(" r : resetar a pilha\n");
+    printf(" c : copia o último valor da pilha\n");
+    printf(" d : deleta o último valor da pilha\n");
+    printf(" s : troca os últimos dois valores da pilha\n");
+    printf(" h : abre o menu de ajuda\n");
+    printf("\n<Aperte ENTER para continuar>\n");
+    getchar();
+    getchar();
+
 }
