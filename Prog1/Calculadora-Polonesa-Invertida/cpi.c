@@ -13,13 +13,16 @@ int main(){
     float numero, n1, n2, res, lixo, temp;
     tad_pilha pilha;
 
-    printf("\033[H\033[J"); /* comando para limpar a tela */ 
+    printf("\033[H\033[J"); /* comando para limpar a tela */
+    printf("Aperte 'h' para abrir o menu de ajuda\n\n"); 
     inicializa_pilha(&pilha);
     scanf("%s", entrada);
 
+    printf("%s", entrada);
+
     while(entrada[0] != 'q'){
 
-        /* Caso a entrada seja um número, empilhar*/
+        /* Caso a entrada seja um número (positivo ou negativo), empilhar*/
         if (isdigit(entrada[0]) || ((entrada[0] == '-') && isdigit(entrada[1]))){
             numero = atof(entrada);
             if (!empilha(numero, &pilha)){
@@ -30,8 +33,8 @@ int main(){
 
         /* Caso a entrada seja um comando */   
         } else {
-            /* Caso seja uma das quatro operações básicas */
-            if ((entrada[0] == '+' || entrada[0] == '-' || entrada[0] == '/' || entrada[0] == '*') && (tamanho_pilha(pilha) >= 2)){
+            /* Caso seja uma das quatro operações básicas, a pilha precisa ter pelo menos 2 elementos e a entrada deve ter apenas 1 caractere */
+            if ((entrada[0] == '+' || entrada[0] == '-' || entrada[0] == '/' || entrada[0] == '*') && (tamanho_pilha(pilha) >= 2) && (entrada[1] == '\0')){
                 
                 desempilha(&n2, &pilha);
                 desempilha(&n1, &pilha);
@@ -54,8 +57,16 @@ int main(){
                     break;
 
                 case '/':
-                    res = n1 / n2;
-                    empilha(res, &pilha);
+                    if (n2 == 0){
+                        empilha(n1, &pilha);
+                        empilha(n2, &pilha);
+                        printf("Impossível realizar divisão por zero\n <Aperte ENTER para continuar>\n");
+                        getchar();
+                        getchar();
+                    } else {
+                        res = n1 / n2;
+                        empilha(res, &pilha);
+                    }
                     break;
 
                 default:
