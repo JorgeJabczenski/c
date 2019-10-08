@@ -4,47 +4,44 @@
 
 int main(){
 
-	int len = 2;
-	char *buff = (char *) malloc (len * sizeof (char));
+	int tam = 2;
+	char *buffer = (char *) malloc (tam * sizeof (char));
 	int i = 0;
 
 
-	if (buff == NULL){
+	if (buffer == NULL){
 		printf("Sem memória irmão\n");
 		return 1;
 	}
 
-	scanf("%c", buff+i) ;
+	scanf("%c", buffer+i) ;
 	
-	while((buff[i] != '\n')) {
+	while((buffer[i] != '\n')) {
 		i++;
-		if (i == len){
-			len *= 2;
-			buff = (char *) realloc(buff,len * sizeof (char));
-			if (buff == NULL){
+		if (i == tam){
+			tam *= 2;
+			buffer = (char *) realloc(buffer,tam * sizeof (char));
+			if (buffer == NULL){
 				printf("Sem memória irmão\n");
 				return 1;
 				break;
 			}
 		}
-		
-		scanf("%c", buff+i);
+		scanf("%c", buffer+i);
 	}
 
-	int tam = (int) strlen(buff) - 1;
+	tam = (int) strlen(buffer) - 1;
 
 	i = 0;
-	while((buff[i] == buff[tam - i - 1]) && (i < (tam / 2))) {
-		printf("%c é igual a %c \n",buff[i],buff[tam - i - 1]);
+	while((buffer[i] == buffer[tam - i - 1]) && (i < (tam / 2))) 
 		i++;
-	}
 
 	if (i == (tam/2))
 		printf("SIM\n");
 	else
 		printf("NAO\n");
 
-	free(buff);
+	free(buffer);
 
 	return 0;
 }
