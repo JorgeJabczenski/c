@@ -4,10 +4,8 @@
 
 int main(){
 
-	int tam = 2;
+	int tam = 2, i = 0;
 	char *buffer = (char *) malloc (tam * sizeof (char));
-	int i = 0;
-
 
 	if (buffer == NULL){
 		printf("Sem memória irmão\n");
