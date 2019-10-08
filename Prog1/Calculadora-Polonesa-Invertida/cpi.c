@@ -18,8 +18,6 @@ int main(){
     inicializa_pilha(&pilha);
     scanf("%s", entrada);
 
-    printf("%s", entrada);
-
     while(entrada[0] != 'q'){
 
         /* Caso a entrada seja um número (positivo ou negativo), empilhar*/
