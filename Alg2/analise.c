@@ -4,7 +4,7 @@
 
 #include "lib_ordena.h"
 
-#define MAX_IT 10000 /* isto pode ser ajustado */
+#define MAX_IT 10 /* isto pode ser ajustado */
 
 /* Retorna tempo em milisegundos */
 double timestamp(void)
@@ -24,11 +24,12 @@ int main () {
     /* defina tam como voce achar melhor */
     tam = 10;
     gera_vetor_randomico (v,tam);
+    imprime_vetor(v, tam);
 
     soma_tempo = 0;
     for (i=0; i<MAX_IT; i++) {
         ini = timestamp();
-        quicksort (v,0,tam-1);     /* mede tempo so do quicksort */
+        quicksort (v,0,tam-1);  /* mede tempo so do quicksort */
         fim = timestamp();
         soma_tempo += (fim-ini);
         embaralha_vetor (v,tam);    /* nao conta o tempo de embaralhar */
