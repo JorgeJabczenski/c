@@ -93,8 +93,10 @@ int particiona (int v[], int ini, int fim) {
 }
 
 void inserctionsort (int v[], int ini, int fim) {
-    
-    for (int i = 1; i < t; i++)
+   
+    int i;
+
+    for (i = ini+1; i < fim; i++)
     {
         int key = v[i];
         int j = i-1;
@@ -106,7 +108,6 @@ void inserctionsort (int v[], int ini, int fim) {
         }
         v[j+1] = key;
     }
-
 }
 
 void quicksort(int v[], int ini, int fim){
