@@ -5,11 +5,13 @@
 #include "lib_ordena.h"
 
 void imprime_vetor (int v[], int tam) {
+    
     int i;
 
-    for (i=0; i<tam-1; i++)
+    for (i = 0; i < tam-1; i++)
         printf("%d ",v[i]);
     printf("%d\n",v[tam-1]);
+
 }
 
 void troca(int *a, int *b){
@@ -20,22 +22,27 @@ void troca(int *a, int *b){
 
 }
 
-void gera_vetor_em_ordem (int v[], int tam) {
+void gera_vetor_ordenado (int v[], int tam) {
+    
     int i;
 
-    for (i=0; i<tam; i++)
+    for (i = 0; i < tam; i++)
         v[i] = i;
+
 }
 
-void gera_vetor_randomico (int v[], int tam) {
+void gera_vetor_aleatorio (int v[], int tam) {
+  
     int i;
 
     srand(time(0));
-    for (i=0; i<tam; i++)
+    for (i = 0; i < tam; i++)
         v[i] = (unsigned int) (rand() % (tam*3)); /* pode modificar se quiser */
+        
 }
 
 void embaralha_vetor (int v[], int tam) {
+    
     int k, i, j, max_trocas;
 
     max_trocas = (unsigned int) (rand() % tam) + tam; /* pode modificar */
@@ -46,35 +53,57 @@ void embaralha_vetor (int v[], int tam) {
     }
 }
 
+
+/* Implementação 'desotimizada' do merge */
 void merge(int v[], int ini, int meio, int fim){
 
-    int vtemp[MAX];
-    int p1 = ini, p2 = meio+1, f1 = 1, f2 = 1, tam = fim-ini+1;
-    int i, j;
-    for(i = 0; i < tam; i++){
-        if (f1 && f2){
-            if (v[p1] < v[p2])
-                vtemp[i] = v[p1++];
-            else
-                vtemp[i] = v[p2++];
+    int i = ini;       /* começo do primeiro vetor */
+    int j = meio+1;    /* começo do segundo vetor  */
+    int idx = 0;       /* indice do vetor auxiliar */
 
-            if (p1 > meio) f1 = 0;
-            if (p2 >  fim) f2 = 0; 
+    int *vetaux = malloc((fim-ini+1)*sizeof(int));
+
+    while((i <= meio) && (j <= fim)){
+    
+        if (v[i] < v[j]){
+            vetaux[idx++] = v[i++];
         } else {
-            if (f1)
-                vtemp[i] = v[p1++];
-             else
-                vtemp[i] = v[p2++];
+            vetaux[idx++] = v[j++];
         }
     }
 
-    for (i = 0, j = ini; i < tam; i++,j++){
-        v[j] = vtemp[i];
+    while(i <= meio){
+        vetaux[idx++] = v[i++];
     }
 
+    while(j <= fim){
+        vetaux[idx++] = v[j++];
+    }
+
+    for (i = 0; i < (fim-ini)+1; i++)
+        v[ini+i] = vetaux[i];
+   
+    free(vetaux);
 
 }
 
+/* Usa o primeiro elemento como pivo */
+int particiona (int v[], int ini, int fim) {
+    int indice = ini+1;
+    int j;
+    
+    for (j = ini+1; j <= fim; j++){
+           if (v[j] < v[ini]){
+                troca(&v[j], &v[indice++]);
+           }
+    }
+
+    troca(&v[ini],&v[indice-1]);
+    return (indice-1);
+}
+
+/* Usa o último elemento como pivo */
+/*
 int particiona (int v[], int ini, int fim) {
 
     int indice = ini-1;
@@ -91,8 +120,9 @@ int particiona (int v[], int ini, int fim) {
     return (indice + 1);
 
 }
+*/
 
-void inserctionsort (int v[], int ini, int fim) {
+void insertionsort (int v[], int ini, int fim) {
    
     int i;
 
