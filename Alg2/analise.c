@@ -15,26 +15,79 @@ double timestamp(void)
 }
 
 int main () {
-    int v[MAX]; 
+    int va[MAX], vb[MAX]; 
     int i, tam;
-    double ini, fim, soma_tempo;
+    double iniA, iniB, fimA, fimB, soma_tempo_a, soma_tempo_b;
 
     /* testes com vetores gerados randomicamente */
 
     /* defina tam como voce achar melhor */
-    tam = 1000;
-    gera_vetor_aleatorio (v,tam);
 
-    soma_tempo = 0;
-    for (i=0; i<MAX_IT; i++) {
-        ini = timestamp();
-        quicksort (v,0,tam-1);  /* mede tempo so do quicksort */
-        fim = timestamp();
-        soma_tempo += (fim-ini);
-        embaralha_vetor (v,tam);    /* nao conta o tempo de embaralhar */
+    for (tam = 10; tam < 10000000; tam *= 10){
+
+
+      /* Comparando o QuickSort e o MergeSort com Entradas Aleatórias */
+
+      soma_tempo_a = 0;
+      soma_tempo_b = 0;
+      for (i = 0; i < MAX_IT; i++){
+
+        /* Gera duas copias do mesmo vetor */
+        gera_vetor_aleatorio (va,tam);
+        copia_vetor(va,vb,tam);
+
+        /* Mede o tempo do QuickSort */
+        iniA = timestamp();
+        quicksort(va,0,tam-1);
+        fimA = timestamp();
+        soma_tempo_a += (fimA - iniA);
+
+        /* Mede o tempo do MergeSort */
+        iniB = timestamp();
+        mergesort(vb,0,tam-1);
+        fimB = timestamp();
+        soma_tempo_b += (fimB - iniB);
+
+      }
+
+      printf("\ntamanho : %d\n", tam);
+      printf("vetor: aleatório\n");
+      printf("tempo medio do quicksort: %f\n", soma_tempo_a/MAX_IT);
+      printf("tempo medio do mergesort: %f\n", soma_tempo_b/MAX_IT);
+  /*-----------------------------------------------------------------------------------------*/
+      /* Comparando o QuickSort e o MergeSort com Entradas Ordenadas */
+
+      soma_tempo_a = 0;
+      soma_tempo_b = 0;
+      for (i = 0; i < MAX_IT; i++){
+
+        /* Gera duas copias do mesmo vetor */
+        gera_vetor_ordenado (va,tam);
+        copia_vetor(va,vb,tam);
+
+        /* Mede o tempo do QuickSort */
+        iniA = timestamp();
+        quicksort(va,0,tam-1);
+        fimA = timestamp();
+        soma_tempo_a += (fimA - iniA);
+
+        /* Mede o tempo do MergeSort */
+        iniB = timestamp();
+        mergesort(vb,0,tam-1);
+        fimB = timestamp();
+        soma_tempo_b += (fimB - iniB);
+
+      }
+
+      printf("\ntamanho : %d\n", tam);
+      printf("vetor: ordenado\n");
+      printf("tempo medio do quicksort: %f\n", soma_tempo_a/MAX_IT);
+      printf("tempo medio do mergesort: %f\n", soma_tempo_b/MAX_IT);
+
+      printf("---------------------------\n");
+
     }
-    printf("tamanho : %d\n", tam);
-    printf("tempo medio do quicksort: %f\n", soma_tempo/MAX_IT);
 
-    return 0;
+
+  return 0;
 }

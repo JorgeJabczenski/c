@@ -5,6 +5,7 @@ void gera_vetor_aleatorio (int v[], int tam);
 void gera_vetor_ordenado  (int v[], int tam);
 void embaralha_vetor      (int v[], int tam);
 void imprime_vetor        (int v[], int tam);
+void copia_vetor          (int voriginal[], int vcopia[], int tam);
 
 /* Funções Auxiliares */
 void troca     (int *i, int *j);

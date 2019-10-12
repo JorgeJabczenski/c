@@ -4,6 +4,14 @@
 
 #include "lib_ordena.h"
 
+void copia_vetor(int voriginal[], int vcopia[], int tam){
+    
+    int i;
+
+    for (i = 0; i < tam; i++)
+        vcopia[i] = voriginal[i];
+}
+
 void imprime_vetor (int v[], int tam) {
     
     int i;
