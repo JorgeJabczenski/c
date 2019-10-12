@@ -1,4 +1,4 @@
-#define MAX 10
+#define MAX 10000
 
 void gera_vetor_randomico (int v[], int tam);
 void gera_vetor_em_ordem (int v[], int tam);
