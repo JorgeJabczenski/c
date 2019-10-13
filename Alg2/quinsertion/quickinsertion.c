@@ -10,6 +10,24 @@ void troca(int *a, int *b){
 
 }
 
+void insertionsort (int v[], int ini, int fim) {
+   
+    int i;
+
+    for (i = ini+1; i <= fim; i++)
+    {
+        int key = v[i];
+        int j = i-1;
+        while(key < v[j] && j >= 0)
+        {
+            v[j+1] = v[j];
+            j--;
+            
+        }
+        v[j+1] = key;
+    }
+}
+
 void printArray(int A[], int size) 
 { 
     int i; 
@@ -51,9 +69,13 @@ int partition(int v[], int ini, int fim){
 void quicksort(int v[], int ini, int fim){
 
     if (ini < fim){
-        int pivo = partition(v, ini, fim);
-        quicksort(v, ini, pivo - 1);
-        quicksort(v, pivo +1, fim);
+        if ((fim-ini+1) <= 30){
+            insertionsort(v, ini, fim);
+        } else {
+            int pivo = partition(v, ini, fim);
+            quicksort(v, ini, pivo - 1);
+            quicksort(v, pivo +1, fim);
+        }
     
     }
 }
@@ -72,7 +94,8 @@ int main(){
 
    
 
-    quicksort(vetor, 0, tam-1);
+    /*quicksort(vetor, 0, tam-1);*/
+    insertionsort(vetor, 0, tam-1);
 
     printArray(vetor, tam);
     

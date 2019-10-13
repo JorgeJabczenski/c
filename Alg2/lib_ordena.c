@@ -136,7 +136,7 @@ void insertionsort (int v[], int ini, int fim) {
    
     int i;
 
-    for (i = ini+1; i < fim; i++)
+    for (i = ini+1; i <= fim; i++)
     {
         int key = v[i];
         int j = i-1;
@@ -150,16 +150,70 @@ void insertionsort (int v[], int ini, int fim) {
     }
 }
 
+int particiona_mediana3(int v[], int ini, int fim){
+
+    int mediana = ini;
+    int meio = (ini+fim)/2;
+
+    if ((v[ini] < v[meio]) && (v[meio] < v[fim]))
+        mediana = meio;
+    if ((v[meio] < v[ini]) && (v[ini] < v[fim]))
+        mediana = ini;
+    if ((v[ini] < v[fim]) && (v[fim] < v[meio]))
+        mediana = fim;
+
+    troca(&v[mediana], &v[fim]);
+
+    int indice = ini-1;
+    int j;
+    
+    for (j = ini; j < fim; j++){
+           if (v[j] < v[fim]){
+                troca(&v[j], &v[indice+1]);
+                indice++;
+           }
+    }
+
+    troca(&v[fim],&v[indice+1]);
+    return (indice + 1);
+
+}
+
 void quicksort(int v[], int ini, int fim){
 
     if (ini < fim){
         int pivo = particiona(v, ini, fim);
         quicksort(v, ini, pivo - 1);
-        quicksort(v, pivo +1, fim);
+        quicksort(v, pivo + 1, fim);
     
     }
 }
 
+void quicksort_mediana3(int v[], int ini, int fim){
+
+    if (ini < fim){
+        int pivo = particiona_mediana3(v, ini, fim);
+        quicksort_mediana3(v, ini, pivo - 1);
+        quicksort_mediana3(v, pivo + 1, fim);
+    
+    }
+
+}
+
+void quicksort_mediana3_insertion(int v[], int ini, int fim){
+
+    if (ini < fim){
+        if ((fim-ini+1) <= 30){
+            insertionsort(v, ini, fim);
+        } else {
+            int pivo = particiona_mediana3(v, ini, fim);
+            quicksort_mediana3_insertion  (v, ini, pivo - 1);
+            quicksort_mediana3_insertion  (v, pivo + 1, fim);
+        }
+    
+    }       
+
+}
 
 void mergesort (int v[], int ini, int fim) {
     

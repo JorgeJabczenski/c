@@ -8,12 +8,13 @@ Implementar otimizações do Quick Sort
     - QuickSort + Insertion
     - Embaralhar o vetor antes
 
+Melhorar o programa de testes para não ter que calcular sempre os mesmos tempos
+
 -------------------------------------------------------------------------------------
 (Utilizar entradas de tamanho 10, 100, 1.000, 10.000. 100.000, 1.000.000)
 
 Trabalho: 
 
-3) Comparar a pior entrada do QuickSort com o pivô no início e com a técnica da mediana  de três
 
 4) No QuickSort, comparar a técnica da mediana de 3 com a mediana de 5
 
@@ -33,3 +34,5 @@ Para todas as tarefas acima, gerar gráficos no Gnuplot.
 2)
     a. Encontrar um tamaho de entrada onde o Insertion é mais eficiênte que o Quick
     b. Encontrar um tamaho de entrada onde o Insertion é mais eficiênte que o Merge
+
+3) Comparar a pior entrada do QuickSort com o pivô no início e com a técnica da mediana  de três
