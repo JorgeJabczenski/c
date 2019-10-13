@@ -1,0 +1,279 @@
+logs
+Comparando o QuickSort e o MergeSort
+
+tamanho : 10
+vetor: aleatório
+tempo medio do quicksort: 0.000774
+tempo medio do mergesort: 0.001418
+
+tamanho : 10
+vetor: ordenado
+tempo medio do quicksort: 0.000950
+tempo medio do mergesort: 0.001360
+---------------------------
+
+tamanho : 100
+vetor: aleatório
+tempo medio do quicksort: 0.004648
+tempo medio do mergesort: 0.007419
+
+tamanho : 100
+vetor: ordenado
+tempo medio do quicksort: 0.013005
+tempo medio do mergesort: 0.004697
+---------------------------
+
+tamanho : 1000
+vetor: aleatório
+tempo medio do quicksort: 0.088809
+tempo medio do mergesort: 0.104614
+
+tamanho : 1000
+vetor: ordenado
+tempo medio do quicksort: 1.161604
+tempo medio do mergesort: 0.060500
+---------------------------
+
+tamanho : 10000
+vetor: aleatório
+tempo medio do quicksort: 1.207971
+tempo medio do mergesort: 1.329731
+
+tamanho : 10000
+vetor: ordenado
+tempo medio do quicksort: 115.303726
+tempo medio do mergesort: 0.766135
+---------------------------
+
+tamanho : 100000
+vetor: aleatório
+tempo medio do quicksort: 15.406243
+tempo medio do mergesort: 16.274207
+
+tamanho : 100000
+vetor: ordenado
+tempo medio do quicksort: 11470.917571
+tempo medio do mergesort: 8.973230
+---------------------------
+Comparando o Quick e o Insertion 
+
+tamanho : 10
+vetor: aleatório
+tempo medio do quicksort: 0.000164
+tempo medio do insertion: 0.000127
+
+tamanho : 10
+vetor: ordenado
+tempo medio do quick: 0.000220
+tempo medio do insertion: 0.000042
+---------------------------
+
+tamanho : 20
+vetor: aleatório
+tempo medio do quicksort: 0.000432
+tempo medio do insertion: 0.000251
+
+tamanho : 20
+vetor: ordenado
+tempo medio do quick: 0.000654
+tempo medio do insertion: 0.000117
+---------------------------
+
+tamanho : 30
+vetor: aleatório
+tempo medio do quicksort: 0.000913
+tempo medio do insertion: 0.000718
+
+tamanho : 30
+vetor: ordenado
+tempo medio do quick: 0.001367
+tempo medio do insertion: 0.000088
+---------------------------
+
+tamanho : 40
+vetor: aleatório
+tempo medio do quicksort: 0.000999
+tempo medio do insertion: 0.001272
+
+tamanho : 40
+vetor: ordenado
+tempo medio do quick: 0.002363
+tempo medio do insertion: 0.000120
+---------------------------
+
+tamanho : 50
+vetor: aleatório
+tempo medio do quicksort: 0.001436
+tempo medio do insertion: 0.001831
+
+tamanho : 50
+vetor: ordenado
+tempo medio do quick: 0.003557
+tempo medio do insertion: 0.000178
+---------------------------
+
+tamanho : 60
+vetor: aleatório
+tempo medio do quicksort: 0.001274
+tempo medio do insertion: 0.002190
+
+tamanho : 60
+vetor: ordenado
+tempo medio do quick: 0.005010
+tempo medio do insertion: 0.000210
+---------------------------
+
+tamanho : 70
+vetor: aleatório
+tempo medio do quicksort: 0.002175
+tempo medio do insertion: 0.003110
+
+tamanho : 70
+vetor: ordenado
+tempo medio do quick: 0.006633
+tempo medio do insertion: 0.000195
+---------------------------
+
+tamanho : 80
+vetor: aleatório
+tempo medio do quicksort: 0.002229
+tempo medio do insertion: 0.003918
+
+tamanho : 80
+vetor: ordenado
+tempo medio do quick: 0.008503
+tempo medio do insertion: 0.000247
+---------------------------
+
+tamanho : 90
+vetor: aleatório
+tempo medio do quicksort: 0.002542
+tempo medio do insertion: 0.006323
+
+tamanho : 90
+vetor: ordenado
+tempo medio do quick: 0.010632
+tempo medio do insertion: 0.000273
+---------------------------
+
+tamanho : 100
+vetor: aleatório
+tempo medio do quicksort: 0.003352
+tempo medio do insertion: 0.006472
+
+tamanho : 100
+vetor: ordenado
+tempo medio do quick: 0.012939
+tempo medio do insertion: 0.000278
+---------------------------
+Comparando o Merge e o Insertion
+
+tamanho : 10
+vetor: aleatório
+tempo medio do mergesort: 0.000317
+tempo medio do insertion: 0.000110
+
+tamanho : 10
+vetor: ordenado
+tempo medio do mergesort: 0.000281
+tempo medio do insertion: 0.000022
+---------------------------
+
+tamanho : 20
+vetor: aleatório
+tempo medio do mergesort: 0.000779
+tempo medio do insertion: 0.000244
+
+tamanho : 20
+vetor: ordenado
+tempo medio do mergesort: 0.000710
+tempo medio do insertion: 0.000068
+---------------------------
+
+tamanho : 30
+vetor: aleatório
+tempo medio do mergesort: 0.001199
+tempo medio do insertion: 0.000730
+
+tamanho : 30
+vetor: ordenado
+tempo medio do mergesort: 0.001255
+tempo medio do insertion: 0.000212
+---------------------------
+
+tamanho : 40
+vetor: aleatório
+tempo medio do mergesort: 0.001589
+tempo medio do insertion: 0.000903
+
+tamanho : 40
+vetor: ordenado
+tempo medio do mergesort: 0.001550
+tempo medio do insertion: 0.000120
+---------------------------
+
+tamanho : 50
+vetor: aleatório
+tempo medio do mergesort: 0.002141
+tempo medio do insertion: 0.001846
+
+tamanho : 50
+vetor: ordenado
+tempo medio do mergesort: 0.002034
+tempo medio do insertion: 0.000139
+---------------------------
+
+tamanho : 60
+vetor: aleatório
+tempo medio do mergesort: 0.002588
+tempo medio do insertion: 0.002134
+
+tamanho : 60
+vetor: ordenado
+tempo medio do mergesort: 0.002424
+tempo medio do insertion: 0.000161
+---------------------------
+
+tamanho : 70
+vetor: aleatório
+tempo medio do mergesort: 0.003113
+tempo medio do insertion: 0.003286
+
+tamanho : 70
+vetor: ordenado
+tempo medio do mergesort: 0.003135
+tempo medio do insertion: 0.000256
+---------------------------
+
+tamanho : 80
+vetor: aleatório
+tempo medio do mergesort: 0.003667
+tempo medio do insertion: 0.003879
+
+tamanho : 80
+vetor: ordenado
+tempo medio do mergesort: 0.003538
+tempo medio do insertion: 0.000212
+---------------------------
+
+tamanho : 90
+vetor: aleatório
+tempo medio do mergesort: 0.004426
+tempo medio do insertion: 0.006460
+
+tamanho : 90
+vetor: ordenado
+tempo medio do mergesort: 0.004011
+tempo medio do insertion: 0.000259
+---------------------------
+
+tamanho : 100
+vetor: aleatório
+tempo medio do mergesort: 0.004624
+tempo medio do insertion: 0.006526
+
+tamanho : 100
+vetor: ordenado
+tempo medio do mergesort: 0.004497
+tempo medio do insertion: 0.000283
+---------------------------

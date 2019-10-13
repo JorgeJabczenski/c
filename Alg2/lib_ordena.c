@@ -68,8 +68,9 @@ void merge(int v[], int ini, int meio, int fim){
     int i = ini;       /* começo do primeiro vetor */
     int j = meio+1;    /* começo do segundo vetor  */
     int idx = 0;       /* indice do vetor auxiliar */
+    int vetaux[fim-ini+1];
 
-    int *vetaux = malloc((fim-ini+1)*sizeof(int));
+    /*int *vetaux = malloc((fim-ini+1)*sizeof(int));*/
 
     while((i <= meio) && (j <= fim)){
     
@@ -91,11 +92,12 @@ void merge(int v[], int ini, int meio, int fim){
     for (i = 0; i < (fim-ini)+1; i++)
         v[ini+i] = vetaux[i];
    
-    free(vetaux);
+    /*free(vetaux);*/
 
 }
 
 /* Usa o primeiro elemento como pivo */
+
 int particiona (int v[], int ini, int fim) {
     int indice = ini+1;
     int j;

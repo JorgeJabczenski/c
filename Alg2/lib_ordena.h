@@ -1,4 +1,4 @@
-#define MAX 10000
+#define MAX 1000000000
 
 /* Operações com Vetor */
 void gera_vetor_aleatorio (int v[], int tam);
