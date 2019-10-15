@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <time.h>
 #include <unistd.h>
 #include "jdv.h"
 
@@ -38,10 +39,10 @@ int main(int argc, char **argv ){
     imprime_geracao(antiga);
 
     for (i = 0; i < numeroDeGeracoes; i++){
-        calcular_nova_geracao(&antiga, &nova);
-        copia_geracao(&nova, &antiga);
+        calcular_nova_geracao(&antiga, &nova); /*calcula a geração 'nova' com base na 'antiga'*/
+        copia_geracao(&nova, &antiga); /* copia a geração 'nova' calculada para a geracao 'antiga' */
         imprime_geracao(nova);
-        usleep(SLEEP_TIME);
+        nanosleep(SLEEP_TIME);
     }
 
 	return 0;
