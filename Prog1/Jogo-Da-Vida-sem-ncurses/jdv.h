@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <curses.h>
 #include <ctype.h>
+
+#define clear() printf("\033[H\033[J")
 
 typedef struct geracao{
     int **matriz;
@@ -16,5 +17,6 @@ int **aloca_matrizes(int lin, int col);
 
 /* Funções do jogo */
 int conta_vizinhos();
-void copia_matrizes();
 void ler_geracao_inicial(geracao *g);
+void copia_geracao(geracao *g1, geracao *g2);
+void calcular_nova_geracao(geracao *g1, geracao *g2);

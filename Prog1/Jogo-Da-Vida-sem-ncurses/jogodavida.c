@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <unistd.h>
 #include "jdv.h"
+
+#define SLEEP_TIME 100000
 
 
 int main(int argc, char **argv ){
@@ -12,23 +15,34 @@ int main(int argc, char **argv ){
         return 1;
     }
 
+    /* Declaração de Variáveis */
     geracao antiga, nova;
+    int numeroDeGeracoes;
+    int i;
+    
+    
     antiga.lin  = atoi(argv[1]);
     antiga.col  = atoi(argv[2]);
     nova.lin    = atoi(argv[1]);
     nova.col    = atoi(argv[2]);
 
+
+    printf("Quantas Gerações você quer imprimir?\n");
+    scanf("%d", &numeroDeGeracoes);
+
     /* alocando as matrizes das duas gerações */
     antiga.matriz = aloca_matrizes(antiga.lin, antiga.col);
     nova.matriz   = aloca_matrizes(nova.lin  , nova.col);
 
-    getch();
-
-    ler_geracao_inicial(&antiga); /* Le e coloca as jogadas da geraçao 1 */
-
+    ler_geracao_inicial(&antiga); /* Le e coloca as posições da geraçao 1 */
     imprime_geracao(antiga);
 
-    getch();
+    for (i = 0; i < numeroDeGeracoes; i++){
+        calcular_nova_geracao(&antiga, &nova);
+        copia_geracao(&nova, &antiga);
+        imprime_geracao(nova);
+        usleep(SLEEP_TIME);
+    }
 
 	return 0;
 }
