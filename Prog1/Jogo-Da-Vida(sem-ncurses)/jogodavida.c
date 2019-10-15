@@ -1,19 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <curses.h>
 #include <ctype.h>
 #include "jdv.h"
 
 
 int main(int argc, char **argv ){
 
-	initscr();
-    clear();
-    
     /* Confere o número de parâmetros */
     if (argc != 3) {
         printf("Número de parametros incorreto, o programa deve possuir 2 parâmetros \n");
-        endwin();
         return 1;
     }
 
@@ -34,17 +29,6 @@ int main(int argc, char **argv ){
     imprime_geracao(antiga);
 
     getch();
-
-    int i,j;
-
-	for (i = 0; i < 20; i++)
-		for (j = 0; j < 20; j++)
-			mvprintw(j,i,"~");
-
-	refresh();
-	getch();
-
-	endwin();
 
 	return 0;
 }
