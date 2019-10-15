@@ -234,7 +234,7 @@ void merge_b(int v[], int ini, int meio, int fim){
     
     int *vetaux = malloc((fim-ini+1)*sizeof(int));
 
-    if (v[meio] > v[meio+1]){
+    if (v[meio] >= v[meio+1]){
 
         while((i <= meio) && (j <= fim)){
         
@@ -277,7 +277,7 @@ void merge_c(int *v,int *vetaux,  int ini, int meio, int fim){
     int j = meio+1;    /* começo do segundo vetor  */
     int idx = 0;       /* indice do vetor auxiliar */
 
-    if (v[meio] > v[meio+1]){
+    if (v[meio] >= v[meio+1]){
 
         while((i <= meio) && (j <= fim)){
         

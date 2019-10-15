@@ -1,0 +1,5 @@
+#!/bin/bash
+
+gcc -ansi -Wall -Wextra -c lib_ordena.c
+gcc -ansi -Wall -Wextra main.c lib_ordena.o
+
