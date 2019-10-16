@@ -226,6 +226,41 @@ void mergesort (int v[], int ini, int fim) {
     }
 }
 
+void merge_a(int *a, int *b, int ini, int meio, int fim){
+
+	int i = ini;
+	int j = meio + 1;
+	int ind = ini;
+
+    if (a[meio] >= a[meio+1]){
+
+        while(i <= meio && j <= fim){
+            if (a[i] < a[j])
+                b[ind++] = a[i++];
+            else 
+                b[ind++] = a[j++];
+        }
+
+        while(i <= meio)
+            b[ind++] = a[i++];
+
+        while(j <= fim)
+            b[ind++] = a[j++];
+
+    }       
+}
+
+void mergesort_a(int *a, int *b, int ini, int fim){
+
+	if (ini < fim){
+		int meio = (ini + fim) / 2;
+		mergesort_a(b, a, ini, meio);
+		mergesort_a(b, a, meio+1, fim);
+		merge_a(a, b, ini, meio, fim);
+	}
+
+}
+
 void merge_b(int v[], int ini, int meio, int fim){
 
     int i = ini;       /* começo do primeiro vetor */
