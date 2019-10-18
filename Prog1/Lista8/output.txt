@@ -1,0 +1,35 @@
+Criando lista l
+Criando lista m
+Criando lista o
+Criando lista c
+Teste: inserir no inicio
+l: tam: 5 -> 10 8 6 4 2
+Teste: inserir no fim
+m: tam: 5 -> 1 3 5 7 9
+Teste: inserir ordenado
+o: tam: 7 -> 0 2 3 8 9 10 12
+Teste: copia o em c
+c: tam: 7 -> 0 2 3 8 9 10 12
+Concatenando m em l
+l: tam: 10 -> 10 8 6 4 2 1 3 5 7 9
+m:
+Teste: remocoes
+Remocao no inicio: remove todos de l
+l: 
+Remocao no final: remove todos de o
+o: 
+Remocao em ordem: remove elementos selecionados de c
+removeu 0
+removeu 8
+Nao removido: elemento nao encontrado.
+removeu 12
+c: tam: 4 -> 2 3 9 10
+6 nao encontrado.
+2 encontrado.
+destroi l
+Nao destruida: lista vazia
+destroi m
+Nao destruida: lista vazia
+destroi o
+Nao destruida: lista vazia
+destroi c

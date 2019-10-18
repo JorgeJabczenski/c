@@ -1,0 +1,19 @@
+while()
+    
+    /* Caso seja o primeiro elemento */
+    if (l->tamanho == 0){
+        l->ini = malloc(sizeof(struct t_nodo));
+        if (l->ini == NULL) /* Testa se a alocação funcionou */
+            return 0;
+        l->ini->chave = x;
+        l->ini->prox = NULL;
+        l->tamanho++;
+    } else if (tamanho == 1){
+        struct t_nodo *p;
+        p = malloc(sizeof(struct t_nodo));
+        if (p == NULL) /* Testa se a alocação funcionou */
+            return 0;
+        p->chave = x;
+        l->ini->prox = p;
+        p->prox = NULL;
+    }
