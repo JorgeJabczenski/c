@@ -42,7 +42,7 @@ int main(int argc, char **argv ){
         calcular_nova_geracao(&antiga, &nova); /*calcula a geração 'nova' com base na 'antiga'*/
         copia_geracao(&nova, &antiga); /* copia a geração 'nova' calculada para a geracao 'antiga' */
         imprime_geracao(nova);
-        nanosleep(SLEEP_TIME);
+        usleep(SLEEP_TIME);
     }
 
 	return 0;
