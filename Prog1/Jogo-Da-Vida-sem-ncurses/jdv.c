@@ -10,7 +10,7 @@ void imprime_geracao(geracao g){
     for (i = 0; i < g.lin; i++){     
         for (j = 0; j < g.col; j++){
             if (g.matriz[i][j] == 0)
-			    printf("-");
+			    printf(" ");
             else 
                 printf("o");
         }
@@ -51,7 +51,6 @@ void ler_geracao_inicial(geracao *g){
         }
 
         scanf("%d %d", &linha, &coluna);
-
     }
      
 }
@@ -59,9 +58,9 @@ void ler_geracao_inicial(geracao *g){
 
 int conta_vizinhos(geracao *g, int x, int y){
 
-    /* Implementa a função vizinhos como uma esfera, dando a volta no tabuleiro     */
-    /* Eu achei mais prático fazer assim do que ter que me preocupar com as bordas, */
-    /* mesmo que a matemática seja meio chata no inicio, logo ela se torna clara    */
+    /* Implementa a função conta vizinhos como uma esfera, dando a volta no tabuleiro     */
+    /* Eu achei mais prático fazer assim do que ter que me preocupar com as bordas,       */
+    /* mesmo que a matemática seja meio chata no inicio, logo ela se torna clara          */
 
     int soma = 0, i, j;
 
@@ -90,6 +89,7 @@ void copia_geracao(geracao *g1, geracao *g2){
 
 
 void calcular_nova_geracao(geracao *g1, geracao *g2){
+/* Calcula a nova matriz a partir das regras dadas no enunciado */
 
     int vizinhos;
     int i, j;
