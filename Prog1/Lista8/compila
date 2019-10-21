@@ -1,0 +1,2 @@
+gcc -ansi -Wall -c lista.c 
+gcc -ansi -Wall main.c lista.o

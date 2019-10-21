@@ -34,6 +34,11 @@ int insere_inicio_lista(int x, t_lista *l){
 
 int insere_fim_lista(int x, t_lista *l){
 
+    if (lista_vazia(l)){
+        insere_inicio_lista(x, l);
+        return 1;
+    }
+    
     t_nodo *p, *q;
     q = malloc(sizeof(struct t_nodo));
     if (q == NULL)
@@ -48,5 +53,64 @@ int insere_fim_lista(int x, t_lista *l){
     q->chave = x;
     l->tamanho++;
     
+    return 1;
+}
+
+void imprime_lista(t_lista *l){
+    if (l->tamanho == 0)
+        return;
+
+    t_nodo *p;
+    p = l->ini;
+
+    printf("tam: %d -> ",l->tamanho);
+    while(p != NULL){
+        printf("%d ",p->chave);
+        p = p->prox;
+    }
+    printf("\n");
+}
+
+int remove_primeiro_lista(int *item, t_lista *l){
+    
+    if (lista_vazia(l)){
+        return 0;
+    }
+    
+    *item = l->ini->chave;
+
+    l->ini = l->ini->prox;
+
+    l->tamanho--;
+
+    return 1;
+
+}
+
+int remove_ultimo_lista(int *item, t_lista *l){
+
+    if (lista_vazia(l)){
+        return 0;
+    }
+
+    /* Se a lista tem apenas um elemento, retirar ele */
+    if (l->tamanho == 1){
+        *item = l->ini->chave;
+        l->tamanho--;
+        return 1;
+    }
+
+    /* Caso geral */
+    t_nodo *p;
+    p = l->ini;
+
+    while(p->prox->prox != NULL){
+        p = p->prox;
+    }
+
+    *item = p->prox->chave;
+    p->prox = NULL;
+    l->tamanho--;
+
     return 1;
 }
