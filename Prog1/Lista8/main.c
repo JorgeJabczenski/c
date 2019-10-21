@@ -22,6 +22,11 @@ int main(){
 
     imprime_lista(&lista);
 
+    if (pertence_lista(9, &lista))
+        printf("TEM\n");
+    else
+        printf("NAO TEM\n");
+
     int item;
     remove_ultimo_lista(&item, &lista);
     printf("item tirado: %d\n", item);
