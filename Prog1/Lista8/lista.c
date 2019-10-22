@@ -114,3 +114,22 @@ int remove_ultimo_lista(int *item, t_lista *l){
 
     return 1;
 }
+
+int pertence_lista(int chave, t_lista *l){
+
+    if (l->tamanho == 0)
+        return 0;
+    
+    int i;
+    t_nodo *p;
+
+    p = l->ini;
+
+    for (i = 0; i < l->tamanho; i++){
+        if (p->chave == chave)
+            return 1;
+        p = p->prox;
+    }
+
+    return 0;
+}
