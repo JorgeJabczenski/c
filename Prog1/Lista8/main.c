@@ -67,6 +67,8 @@ int main(){
     imprime_lista(&lista3);
     insere_ordenado_lista(1, &lista1);
     imprime_lista(&lista1);
+    remove_item_lista(1, &item, &lista1);
+    imprime_lista(&lista1); 
 
     return 0;
 }

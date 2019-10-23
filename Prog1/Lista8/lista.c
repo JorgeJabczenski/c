@@ -73,7 +73,7 @@ int insere_fim_lista(int x, t_lista *l){
 }
 
 void imprime_lista(t_lista *l){
-    if (l->tamanho == 0)
+    if (l->ini == NULL)
         return;
 
     t_nodo *p;
@@ -115,6 +115,7 @@ int remove_ultimo_lista(int *item, t_lista *l){
     if (l->tamanho == 1){
         *item = l->ini->chave;
         free(l->ini);
+        l->ini = NULL;
         l->tamanho--;
         return 1;
     }
@@ -155,22 +156,24 @@ int pertence_lista(int chave, t_lista *l){
 }
 
 int concatena_listas(t_lista *l, t_lista *m){
-    t_nodo *new;
+    t_nodo *p;
     int i;
 
     /* Caso as duas listas sejam vazias */
     if ((l->ini == NULL) && (m->ini == NULL))
         return 0;
     
-    new = (struct t_nodo *) malloc (sizeof (struct t_nodo));
-    if (new == NULL)
+    p = (struct t_nodo *) malloc (sizeof (t_nodo));
+    if (p == NULL)
         return 0;
-    new = m->ini;
+    p = m->ini;
 
     for (i = 0; i < m->tamanho; i++){
-        insere_fim_lista(new->chave, l);
-        new = new->prox;
+        insere_fim_lista(p->chave, l);
+        p = p->prox;
     }
+    
+    destroi_lista(m);
 
     return 1;
 }
@@ -228,7 +231,52 @@ int insere_ordenado_lista(int x, t_lista *l)
     new->chave = x;
     new->prox = p;
     q->prox = new;
+    l->tamanho++;
 
     return 1;
+
+}
+
+int remove_item_lista(int chave, int *item, t_lista *l){
+    
+    t_nodo *p, *q;
+
+    /* Caso a lista seja vazia, apenas retorna*/
+    if (l->ini == NULL)
+        return 0;
+    
+    /* Caso a lista tenha apenas 1 elemento, ve se é o elemento */
+    if (l->tamanho == 1){
+        if (l->ini->chave == chave)
+            return remove_primeiro_lista(item, l);
+
+        printf ("Nao removido: elemento nao encontrado.\n");
+        return 0;
+    }
+
+
+    /* Se o item for o primeiro */
+    if (l->ini->chave == chave){
+        remove_primeiro_lista(item, l);
+        return 1;
+    }
+
+    /* Caso Geral */
+    p = l->ini;
+    while(p->prox != NULL){
+        
+        q = p;
+        p = p->prox;
+        if (p->chave == chave){
+            *item = p->chave;
+            q->prox = p->prox;
+            free(p);
+            l->tamanho--;       
+            return 1;
+        }
+    }   
+
+    printf ("Nao removido: elemento nao encontrado.\n");
+    return 0;
 
 }

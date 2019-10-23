@@ -168,10 +168,10 @@ void testa_busca(t_lista *c) {
 int main() {
     t_lista c, l, o, m; 
 
-    if (! cria_listas(&l,&m,&o,&c)) return 1; 
-    if (! testa_insercoes(&l,&m,&o)) return 1; 
-    if (! testa_copia(&o,&c)) return 1; 
-    if (! testa_concatencao(&l,&m)) return 1; 
+    if (! cria_listas(&l,&m,&o,&c))   return 1; 
+    if (! testa_insercoes(&l,&m,&o))  return 1; 
+    if (! testa_copia(&o,&c))         return 1; 
+    if (! testa_concatencao(&l,&m))   return 1; 
     if (! testa_remocoes(&l, &o, &c)) return 1; 
     testa_busca(&c);
     destroi_todas_listas(&l, &m, &o, &c);

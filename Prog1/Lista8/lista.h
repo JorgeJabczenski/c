@@ -18,7 +18,7 @@ int lista_vazia(t_lista *l);                             /* done */
 void destroi_lista(t_lista *l);                          /* done */
 int insere_inicio_lista(int x, t_lista *l);              /* done */
 int insere_fim_lista(int x, t_lista *l);                 /* done */
-int insere_ordenado_lista(int x, t_lista *l);            /*  */
+int insere_ordenado_lista(int x, t_lista *l);            /* done */
 void imprime_lista(t_lista *l);                          /* done */
 int remove_primeiro_lista(int *item, t_lista *l);        /* done */
 int remove_ultimo_lista(int *item, t_lista *l);          /* done */
