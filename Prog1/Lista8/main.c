@@ -46,12 +46,12 @@ int main(){
         printf("Tem coisa ai\n");
 */
 
-    insere_inicio_lista(10, &lista1);
-    insere_inicio_lista(20, &lista1);
     insere_inicio_lista(30, &lista1);
-    insere_inicio_lista(2, &lista2);
-    insere_inicio_lista(1, &lista2);
-    insere_inicio_lista(0, &lista2);
+    insere_inicio_lista(20, &lista1);
+    insere_inicio_lista(10, &lista1);
+    insere_fim_lista(70, &lista2);
+    insere_fim_lista(666, &lista2);
+    insere_fim_lista(700, &lista2);
 
     concatena_listas(&lista1, &lista2);
     imprime_lista(&lista1);
@@ -62,6 +62,11 @@ int main(){
     copia_lista(&lista1, &lista3);
     imprime_lista(&lista1);
     imprime_lista(&lista3);
+    destroi_lista(&lista3);
+    destroi_lista(&lista3);
+    imprime_lista(&lista3);
+    insere_ordenado_lista(1, &lista1);
+    imprime_lista(&lista1);
 
     return 0;
 }

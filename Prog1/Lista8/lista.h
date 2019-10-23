@@ -15,7 +15,7 @@ typedef struct t_lista t_lista;
 
 int cria_lista(t_lista *l);                              /* done */
 int lista_vazia(t_lista *l);                             /* done */
-void destroi_lista(t_lista *l);                          /*  */
+void destroi_lista(t_lista *l);                          /* done */
 int insere_inicio_lista(int x, t_lista *l);              /* done */
 int insere_fim_lista(int x, t_lista *l);                 /* done */
 int insere_ordenado_lista(int x, t_lista *l);            /*  */

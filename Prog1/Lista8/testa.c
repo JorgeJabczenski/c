@@ -166,7 +166,7 @@ void testa_busca(t_lista *c) {
 }
 
 int main() {
-    t_lista l, m, o, c; 
+    t_lista c, l, o, m; 
 
     if (! cria_listas(&l,&m,&o,&c)) return 1; 
     if (! testa_insercoes(&l,&m,&o)) return 1; 

@@ -16,7 +16,23 @@ int lista_vazia(t_lista *l){
 }
 
 void destroi_lista(t_lista *l){
-    
+	
+    t_nodo *p = l->ini;
+
+	if (l->ini == NULL){
+		printf("Nao destruida: lista vazia\n");
+        return;
+    } else {
+		while (p->prox != NULL)
+		{ 
+			l->ini = p->prox;		
+			free(p);			
+			p = l->ini;			
+		}
+		free(p);
+		l->ini = NULL;
+		l->tamanho = 0;
+	}
 }
 
 int insere_inicio_lista(int x, t_lista *l){
@@ -178,4 +194,41 @@ int copia_lista(t_lista *l, t_lista *m){
     }
 
     return 1;
+}
+
+int insere_ordenado_lista(int x, t_lista *l)
+{
+
+    t_nodo *p, *q, *new;
+
+    /* Caso a lista seja vazia , apenas insere no inicio*/
+    if (l->ini == NULL)
+        return insere_inicio_lista(x, l);
+    
+    /* Caso a lista tenha apenas 1 elemento, ve se tem que inserir o novo elemento antes ou depois dele */
+    if (l->tamanho == 1){
+        if (l->ini->chave > x)
+            return insere_inicio_lista(x, l);
+        else 
+            return insere_fim_lista(x, l);
+    }
+
+    /* Inserir no começo */
+    if (l->ini->chave > x)
+        return insere_inicio_lista(x, l);
+
+    /* Caso Geral */
+    p = l->ini;
+
+    while((p != NULL) && (p->chave < x)){
+        q = p;
+        p = p->prox;
+    }
+    new =  malloc (sizeof(t_nodo));
+    new->chave = x;
+    new->prox = p;
+    q->prox = new;
+
+    return 1;
+
 }
