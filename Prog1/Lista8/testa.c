@@ -22,13 +22,13 @@ int testa_insercao_fim(t_lista *l) {
 }
 
 int testa_insercao_ordenada(t_lista *l) {
-    if (! insere_ordenado_lista(8,l)) return 0;
+    if (! insere_ordenado_lista(8,l))  return 0;
     if (! insere_ordenado_lista(10,l)) return 0;
-    if (! insere_ordenado_lista(0,l)) return 0;
-    if (! insere_ordenado_lista(9,l)) return 0;
+    if (! insere_ordenado_lista(0,l))  return 0;
+    if (! insere_ordenado_lista(9,l))  return 0;
     if (! insere_ordenado_lista(12,l)) return 0;
-    if (! insere_ordenado_lista(2,l)) return 0;
-    if (! insere_ordenado_lista(3,l)) return 0;
+    if (! insere_ordenado_lista(2,l))  return 0;
+    if (! insere_ordenado_lista(3,l))  return 0;
     return 1;
 }
 

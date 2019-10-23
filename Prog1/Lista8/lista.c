@@ -137,3 +137,45 @@ int pertence_lista(int chave, t_lista *l){
 
     return 0;
 }
+
+int concatena_listas(t_lista *l, t_lista *m){
+    t_nodo *new;
+    int i;
+
+    /* Caso as duas listas sejam vazias */
+    if ((l->ini == NULL) && (m->ini == NULL))
+        return 0;
+    
+    new = (struct t_nodo *) malloc (sizeof (struct t_nodo));
+    if (new == NULL)
+        return 0;
+    new = m->ini;
+
+    for (i = 0; i < m->tamanho; i++){
+        insere_fim_lista(new->chave, l);
+        new = new->prox;
+    }
+
+    return 1;
+}
+
+int copia_lista(t_lista *l, t_lista *m){
+    t_nodo *new;
+    int i;
+
+    /* Caso a lista l seja vaiza */
+    if (l->ini == NULL)
+        return 0;
+    
+    new = (struct t_nodo *) malloc (sizeof (struct t_nodo));
+    if (new == NULL)
+        return 0;
+    new = l->ini;
+
+    for (i = 0; i < l->tamanho; i++){
+        insere_fim_lista(new->chave, m);
+        new = new->prox;
+    }
+
+    return 1;
+}
