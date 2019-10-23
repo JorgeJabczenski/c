@@ -1,2 +1,2 @@
-gcc -ansi -Wall -c lista.c 
-gcc -ansi -Wall main.c lista.o
+gcc -g -ansi -Wall -c lista.c 
+gcc -g -ansi -Wall main.c lista.o

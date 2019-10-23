@@ -6,10 +6,12 @@
 
 int main(){
 
+    int item;
     t_lista lista;
     
     cria_lista(&lista);
-    if (lista_vazia(&lista)) 
+    
+    /*if (lista_vazia(&lista)) 
         printf("Lista Vazia \n");
     else 
         printf("Tem coisa ai\n");
@@ -40,7 +42,15 @@ int main(){
         printf("Lista Vazia \n");
     else 
         printf("Tem coisa ai\n");
+*/
 
+    insere_inicio_lista(10, &lista);
+    insere_inicio_lista(20, &lista);
+    imprime_lista(&lista);
+    remove_ultimo_lista(&item, &lista);
+    printf("item tirado: %d\n", item);
+    remove_primeiro_lista(&item, &lista);
+    printf("item tirado: %d\n", item);
 
     return 0;
 }

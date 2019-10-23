@@ -79,6 +79,8 @@ int remove_primeiro_lista(int *item, t_lista *l){
     
     *item = l->ini->chave;
 
+    free(l->ini);
+
     l->ini = l->ini->prox;
 
     l->tamanho--;
@@ -96,6 +98,7 @@ int remove_ultimo_lista(int *item, t_lista *l){
     /* Se a lista tem apenas um elemento, retirar ele */
     if (l->tamanho == 1){
         *item = l->ini->chave;
+        free(l->ini);
         l->tamanho--;
         return 1;
     }
@@ -109,6 +112,7 @@ int remove_ultimo_lista(int *item, t_lista *l){
     }
 
     *item = p->prox->chave;
+    free(p->prox);
     p->prox = NULL;
     l->tamanho--;
 
