@@ -28,7 +28,7 @@ int main () {
 /*****************************************************************************************/
 /*                          QuickSortM3 x MergeSort A                                    */
 /*****************************************************************************************/
-printf("Comparando MergeSort e MergeSort_A (alternado)");
+printf("Comparando QuickSortM3 e MergeSort_A (alternado)");
   
   for (tam = 10; tam < TAM_MAX_VET; tam *= 10){
 

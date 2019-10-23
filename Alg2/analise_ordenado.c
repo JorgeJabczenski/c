@@ -5,7 +5,7 @@
 #include "lib_ordena.h"
 
 #define MAX_IT 10 /* isto pode ser ajustado */
-#define TAM_MAX_VET 1000
+#define TAM_MAX_VET 1000000
 
 /* Retorna tempo em milisegundos */
 double timestamp(void)
@@ -24,15 +24,15 @@ int main () {
     int k = 0;
     double tempos[9][6];
     double soma_tempos[8], ini[8], fim[8];
-    char nomes[9][50] = {   "Tamanho",
-                            "Insertion",
-                            "Quicksort Tradicional", 
-                            "Quicksort M3", 
-                            "Quicksort M3 + Insertion", 
-                            "Mergesort Tradicional", 
-                            "Merge Alternado + Referencia + Checagem", 
-                            "Merge + Checagem",
-                            "Merge + Referencia"};
+    char nomes[9][50] = {   "Tamanho                             ",
+                            "Insertion                           ",
+                            "Quicksort-Tradicional               ", 
+                            "QuicksortM3                         ", 
+                            "QuicksortM3+Insertion               ", 
+                            "Mergesort-Tradicional               ", 
+                            "Merge+Alternado+Referencia+Checagem ", 
+                            "Merge+Checagem                      ",
+                            "Merge+Referencia                    "};
 
 
     for (tam = 10; tam <= TAM_MAX_VET; tam *= 10){
