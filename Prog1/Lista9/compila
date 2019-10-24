@@ -1,0 +1,2 @@
+gcc -g -ansi -Wall -c lib_lista.c
+gcc -g -ansi -Wall -o emain main.c lib_lista.o
