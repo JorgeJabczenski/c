@@ -39,7 +39,7 @@ int main(){
     tamanho_lista(&tamanho, &lista);
     printf("Tamanho :  %d\n", tamanho);
 
-    if(!remove_item_lista(2,&item,&lista)) printf("Chave não encontrada\n");
+    if(!remove_item_lista(10,&item,&lista)) printf("Chave não encontrada\n");
     tamanho_lista(&tamanho, &lista);
     printf("Tamanho :  %d\n", tamanho);
 

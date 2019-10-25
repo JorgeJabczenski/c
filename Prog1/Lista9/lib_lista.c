@@ -111,9 +111,9 @@ int remove_inicio_lista(int *item, t_lista *l){
 
     *item = l->ini->prox->chave;
 
-    l->ini->prox->prox->prev = l->ini;
-    free(l->ini->prox);
     l->ini->prox = l->ini->prox->prox;
+    free(l->ini->prox->prev);
+    l->ini->prox->prev = l->ini;
 
     l->tamanho--;
 
@@ -147,20 +147,18 @@ int remove_item_lista(int chave, int *item, t_lista *l){
 
     l->fim->chave = chave;
 
-    p = l->ini->prox;
-    while(p->chave != chave){
+    p = l->ini;
+    while(p->prox->chave != chave){
         p = p->prox;
     }
     
-    if(p == l->fim){  /* Chegou na Sentinela sem ter achado o elemento */
+    if(p == l->fim->prev){  /* Chegou na Sentinela sem ter achado o elemento */
         return 0;
     }
 
-    p = p->prox;
-    p->prev->prox = p->prev->prev;
-    free(p->prev->prox);
-    p->prev->prox = p;
-
+    p->prox = p->prox->prox;
+    free(p->prox->prev);
+    p->prox->prev = p;
     *item = chave;
 
     l->tamanho--;
