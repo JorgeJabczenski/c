@@ -33,6 +33,11 @@ int lista_vazia(t_lista *l){
     return ((l->tamanho) ? 0 : 1 );
 }
 
+int tamanho_lista(int *tam, t_lista *l){
+    *tam = l->tamanho;
+    return 1;
+}
+
 int insere_inicio_lista(int item, t_lista *l){
 
     t_nodo *new;
@@ -50,11 +55,6 @@ int insere_inicio_lista(int item, t_lista *l){
 
     l->tamanho++;
 
-    return 1;
-}
-
-int tamanho_lista(int *tam, t_lista *l){
-    *tam = l->tamanho;
     return 1;
 }
 
@@ -182,7 +182,6 @@ int pertence_lista(int chave, t_lista *l){
 
 }
 
-
 int inicializa_atual_inicio(t_lista *l){
     if (lista_vazia(l)){
         return 0;
@@ -203,32 +202,75 @@ int inicializa_atual_fim(t_lista *l){
     return 1;
 }
 
+int incrementa_atual(t_lista *l){
+    if (lista_vazia(l) || l->atual == l->fim->prev){
+        return 0;
+    }
 
+    l->atual = l->atual->prox;
 
-/*
-
-void destroi_lista(t_lista *l){
-
+    return 1;
 }
 
+int decrementa_atual(t_lista *l){
+   
+    if (lista_vazia(l) || l->atual == l->ini->prox){
+        return 0;
+    }
 
+    l->atual = l->atual->prev;
 
-
-
-void incrementa_atual(t_lista *l){
-
+    return 1;
 }
 
-void decrementa_atual(t_lista *l){
+int consulta_item_atual(int *item, t_lista *l){
+    if (lista_vazia(l)){
+        return 0;
+    } 
 
-}
+    *item = l->atual->chave;
 
-int consulta_item_atual(int *item, t_lista *atual){
-
+    return 1;
 }
 
 int remove_item_atual(int *item, t_lista *l){
+    
+    if (lista_vazia(l)){
+        return 0;
+    } 
 
+    t_nodo *p;
+
+    p = l->atual;
+
+    *item = l->atual->chave;
+
+    l->atual->prev->prox = l->atual->prox;
+    l->atual->prox->prev = l->atual->prev;
+
+
+    if (l->atual->prox == l->fim){
+        l->atual = l->atual->prev;
+    } else {
+        l->atual = l->atual->prox;
+    }
+
+    free(p);
+    l->tamanho--;
+    return 1;
 }
 
-*/
+void destroi_lista(t_lista *l){
+
+    int lixo, i, tam;
+
+    tam = l->tamanho;
+
+    for (i = 0; i < tam; i++)
+        remove_inicio_lista(&lixo, l);
+
+
+    free(l->ini);
+    free(l->fim);
+
+}
