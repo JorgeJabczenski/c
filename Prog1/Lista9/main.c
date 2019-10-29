@@ -20,6 +20,19 @@ int main(){
     printf("Tamanho :  %d\n", tamanho);
     printf("\n");
 
+    (pertence_lista(10, &lista)) ? printf("PERTENCE\n") : printf("NAONPERTENCE\n");
+    (pertence_lista(20, &lista)) ? printf("PERTENCE\n") : printf("NAONPERTENCE\n");
+    (pertence_lista(30, &lista)) ? printf("PERTENCE\n") : printf("NAONPERTENCE\n");
+    (pertence_lista(40, &lista)) ? printf("PERTENCE\n") : printf("NAONPERTENCE\n");
+
+    inicializa_atual_inicio(&lista);
+    printf("O ATUAL ESTA EM %d\n",lista.atual->chave);
+
+    inicializa_atual_fim(&lista);
+    printf("O ATUAL ESTA EM %d\n",lista.atual->chave);
+
+
+/*
     if (!remove_inicio_lista(&item, &lista)) printf("Lista Vazia!\n");
     printf("Item removido : %d\n", item);
     tamanho_lista(&tamanho, &lista);
@@ -42,7 +55,7 @@ int main(){
     if(!remove_item_lista(10,&item,&lista)) printf("Chave não encontrada\n");
     tamanho_lista(&tamanho, &lista);
     printf("Tamanho :  %d\n", tamanho);
-
+*/
     return 0;
 
 }

@@ -166,23 +166,54 @@ int remove_item_lista(int chave, int *item, t_lista *l){
     return 1;
 }
 
+int pertence_lista(int chave, t_lista *l){
+
+    t_nodo *p;
+
+    p = l->ini;
+    
+    l->fim->chave = chave;
+    
+    while(p->prox->chave != chave){
+        p = p->prox;
+    }
+    
+    return (p->prox == l->fim) ? 0 : 1;
+
+}
+
+
+int inicializa_atual_inicio(t_lista *l){
+    if (lista_vazia(l)){
+        return 0;
+    }
+
+    l->atual = l->ini->prox;
+
+    return 1;
+}
+
+int inicializa_atual_fim(t_lista *l){
+    if (lista_vazia(l)){
+        return 0;
+    }
+
+    l->atual = l->fim->prev;
+
+    return 1;
+}
+
+
+
 /*
 
 void destroi_lista(t_lista *l){
 
 }
 
-int pertence_lista(int chave, t_lista *l){
 
-}
 
-int inicializa_atual_inicio(t_lista *l){
 
-}
-
-int inicializa_atual_fim(t_lista *l){
-
-}
 
 void incrementa_atual(t_lista *l){
 
