@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "lib_lista.h"
-/*#include "lib_lista_complementar.h"*/
+#include "lib_lista_complementar.h"
 
 int main(){
 
-    t_lista lista;
+    t_lista lista, lista2;
     int tamanho, item;
 
     inicializa_lista(&lista);
@@ -63,19 +62,27 @@ int main(){
     printf("Tamanho :  %d\n", tamanho);
 
     insere_fim_lista(10, &lista);
-    insere_fim_lista(10, &lista);
-    insere_fim_lista(10, &lista);
-    insere_fim_lista(10, &lista);
-    insere_fim_lista(10, &lista);
-    insere_fim_lista(10, &lista);
-    insere_fim_lista(10, &lista);
-    insere_fim_lista(10, &lista);
-    insere_fim_lista(10, &lista);
+    insere_fim_lista(20, &lista);
+    insere_fim_lista(30, &lista);
+    insere_fim_lista(40, &lista);
+    insere_fim_lista(50, &lista);
+    insere_fim_lista(60, &lista);
+    insere_fim_lista(70, &lista);
+    insere_fim_lista(80, &lista);
+    insere_fim_lista(90, &lista);
 
     tamanho_lista(&tamanho, &lista);
     printf("Tamanho :  %d\n", tamanho);
 
+    imprime_lista(&lista);
+    
+    inicializa_lista(&lista2);
+    copia_lista(&lista, &lista2);
+    imprime_lista(&lista2);
+    concatena_listas(&lista, &lista2);
+    imprime_lista(&lista);
     destroi_lista(&lista);
+
 
     return 0;
 

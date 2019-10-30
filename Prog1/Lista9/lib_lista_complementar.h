@@ -4,7 +4,6 @@
   Biblioteca auxiliar que manipula o TAD lista. 
 */
 
-#include <stdio.h>
 #include "lib_lista.h"
 
 #define MAX 5

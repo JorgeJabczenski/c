@@ -7,6 +7,7 @@
   para um elemento qualquer da lista, alem do tamanho da lista.
   Contem os prototipos publicos das funcoes que manipulam o TAD.
 */
+
 #include <stdio.h>
 #include <stdlib.h>
 

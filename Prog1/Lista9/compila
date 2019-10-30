@@ -1,2 +1,3 @@
 gcc -g -ansi -Wall -c lib_lista.c
-gcc -g -ansi -Wall -o emain main.c lib_lista.o
+gcc -g -ansi -Wall -c lib_lista_complementar.c
+gcc -g -ansi -Wall -o emain main.c lib_lista.o lib_lista_complementar.o
