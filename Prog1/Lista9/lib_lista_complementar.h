@@ -1,6 +1,6 @@
 /*
-  Feito por Marcos Castiho para a disciplina CI1001 - Programacao I
-  Em 18/10/2019.
+  Feito por Jorge Lucas para a disciplina CI1001 - Programacao I
+  Em 30/10/2019.
   Biblioteca auxiliar que manipula o TAD lista. 
 */
 

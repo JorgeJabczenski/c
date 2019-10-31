@@ -5,84 +5,76 @@
 
 int main(){
 
-    t_lista lista, lista2;
-    int tamanho, item;
+    int item;
+    t_lista lista1, lista2, lista3, lista4, lista5;
 
-    inicializa_lista(&lista);
-    
-    (lista_vazia(&lista)) ? printf("v a z i a\n") : printf("tem coisa\n");
-    insere_fim_lista(10, &lista);
-    insere_fim_lista(20, &lista);
-    insere_fim_lista(30, &lista);
-    (lista_vazia(&lista)) ? printf("v a z i a\n") : printf("tem coisa\n");
-    tamanho_lista(&tamanho, &lista);
-    printf("Tamanho :  %d\n", tamanho);
+    inicializa_lista(&lista1);
+    inicializa_lista(&lista2);
+    inicializa_lista(&lista3);
+    inicializa_lista(&lista4);
+    inicializa_lista(&lista5);
+  
+    printf("Insira a Lista 1 terminada em zero\n");
+    scanf("%d", &item);
+    while(item != 0){
+        insere_fim_lista(item, &lista1);
+        scanf("%d", &item);
+    }
+
+    printf("Insira a Lista 2 terminada em zero\n");
+    scanf("%d", &item);
+    while(item != 0){
+        insere_fim_lista(item, &lista2);
+        scanf("%d", &item);
+    }
+
+    printf("Lista 1 ->  ");
+    imprime_lista(&lista1);
+
+    printf("Lista 2 ->  ");
+    imprime_lista(&lista2);
+
+    printf("Copia lista 1 na lista 3\n");
+    copia_lista(&lista1, &lista3);
+    printf("Lista 1 ->  ");
+    imprime_lista(&lista1);
+    printf("Lista 3 ->  ");
+    imprime_lista(&lista3);
+
+    printf("Copia lista 2 na lista 4\n");
+    copia_lista(&lista2, &lista4);
+    printf("Lista 2 ->  ");
+    imprime_lista(&lista2);
+    printf("Lista 4 ->  ");
+    imprime_lista(&lista4);
+
+    printf("Concatena Listas 3 e 4\n");
+    concatena_listas(&lista3, &lista4);
+    printf("Lista 3 -> ");
+    imprime_lista(&lista3);
+    printf("Lista 4 ->  ");
+    imprime_lista(&lista4);
     printf("\n");
 
-    (pertence_lista(10, &lista)) ? printf("PERTENCE\n") : printf("NAONPERTENCE\n");
-    (pertence_lista(20, &lista)) ? printf("PERTENCE\n") : printf("NAONPERTENCE\n");
-    (pertence_lista(30, &lista)) ? printf("PERTENCE\n") : printf("NAONPERTENCE\n");
-    (pertence_lista(40, &lista)) ? printf("PERTENCE\n") : printf("NAONPERTENCE\n");
+    printf("Ordena Lista 3\n");
+    ordena_lista(&lista3);
+    printf("Lista 3 -> ");
+    imprime_lista(&lista3);
 
-    inicializa_atual_inicio(&lista);
-    printf("O ATUAL ESTA EM %d\n",lista.atual->chave);
-    incrementa_atual(&lista);
-    printf("O ATUAL ESTA EM %d\n",lista.atual->chave);
-    
-    inicializa_atual_fim(&lista);
-    printf("O ATUAL ESTA EM %d\n",lista.atual->chave);
-    decrementa_atual(&lista);
-    printf("O ATUAL ESTA EM %d\n",lista.atual->chave);
-    remove_item_atual(&item, &lista);
-    printf("Item removido : %d\n", item);
-    tamanho_lista(&tamanho, &lista);
-    printf("Tamanho :  %d\n", tamanho);
-
-    if (!remove_inicio_lista(&item, &lista)) printf("Lista Vazia!\n");
-    printf("Item removido : %d\n", item);
-    tamanho_lista(&tamanho, &lista);
-    printf("Tamanho :  %d\n", tamanho);
-
-    if (!remove_inicio_lista(&item, &lista)) printf("Lista Vazia!\n");
-    printf("Item removido : %d\n", item);
-    tamanho_lista(&tamanho, &lista);
-    printf("Tamanho :  %d\n", tamanho);    
-
-    if (!remove_inicio_lista(&item, &lista)) printf("Lista Vazia!\n");
-    printf("Item removido : %d\n", item);
-    tamanho_lista(&tamanho, &lista);
-    printf("Tamanho :  %d\n", tamanho);
-
-    insere_ordenado_lista(10, &lista);
-    tamanho_lista(&tamanho, &lista);
-    printf("Tamanho :  %d\n", tamanho);
-
-    if(!remove_item_lista(10,&item,&lista)) printf("Chave não encontrada\n");
-    tamanho_lista(&tamanho, &lista);
-    printf("Tamanho :  %d\n", tamanho);
-
-    insere_fim_lista(10, &lista);
-    insere_fim_lista(20, &lista);
-    insere_fim_lista(30, &lista);
-    insere_fim_lista(40, &lista);
-    insere_fim_lista(50, &lista);
-    insere_fim_lista(60, &lista);
-    insere_fim_lista(70, &lista);
-    insere_fim_lista(80, &lista);
-    insere_fim_lista(90, &lista);
-
-    tamanho_lista(&tamanho, &lista);
-    printf("Tamanho :  %d\n", tamanho);
-
-    imprime_lista(&lista);
-    
-    inicializa_lista(&lista2);
-    copia_lista(&lista, &lista2);
+    printf("Intercala Listas 1 e 2 na Lista 5\n");
+    intercala_listas(&lista1, &lista2, &lista5);
+    printf("Lista 1 ->  ");
+    imprime_lista(&lista1);
+    printf("Lista 2 ->  ");
     imprime_lista(&lista2);
-    concatena_listas(&lista, &lista2);
-    imprime_lista(&lista);
-    destroi_lista(&lista);
+    printf("Lista 5 ->  ");
+    imprime_lista(&lista5);
 
+    destroi_lista(&lista1);
+    destroi_lista(&lista2);
+    destroi_lista(&lista3);
+    destroi_lista(&lista4);
+    destroi_lista(&lista5);
 
     return 0;
 

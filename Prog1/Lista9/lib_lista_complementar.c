@@ -1,13 +1,4 @@
-/*
-  Feito por Marcos Castiho para a disciplina CI1001 - Programacao I
-  Em 18/10/2019.
-  Biblioteca auxiliar que manipula o TAD lista. 
-*/
 
-/*
-  Funcao que imprime todos os elementos da lista, do inicio ao fim.
-  Caso a lista seja vazia nao imprime nada, nem um \n
-*/
 #include "lib_lista_complementar.h"
 
 void imprime_lista(t_lista *l){
@@ -31,10 +22,6 @@ void imprime_lista(t_lista *l){
 
 }
 
-/*
-  Funcao que copia todos os elementos da lista l na lista c.
-  Retorna 1 se a operação foi bem sucedida e zero caso contrário.
-*/
 int copia_lista(t_lista *l, t_lista *c){
     
   int i, item, tamanho;
@@ -54,11 +41,6 @@ int copia_lista(t_lista *l, t_lista *c){
   return 1;
 }
 
-/*
-  Concatena os elementos da lista m (na mesma ordem) ao final
-  da lista l e destroi a lista m.
-  Retorna 1 se a operação foi bem sucedida e zero caso contrário.
-*/
 int concatena_listas(t_lista *l, t_lista *m){
   if (lista_vazia(l) && lista_vazia(m))
     return 0;
@@ -80,15 +62,76 @@ int concatena_listas(t_lista *l, t_lista *m){
   return 1;
 }
 
-/*
-  Ordena a lista l em ordem crescente.
-  Retorna 1 se a operação foi bem sucedida e zero caso contrário.
-*/
-int ordena_lista(t_lista *l);
+int ordena_lista(t_lista *l){
+  
+  if (lista_vazia(l))
+    return 0;
+  
+  t_lista auxiliar;
+  int i, tamanho, item;
 
-/*
-  Funcao que cria uma nova lista i pela intercalacao dos elementos
-  das listas l e c. As listas l e c devem estar ordenadas.
-  Retorna 1 se a operação foi bem sucedida e zero caso contrário.
-*/
-int intercala_listas(t_lista *l, t_lista *m, t_lista *i);
+  inicializa_lista(&auxiliar);
+
+  tamanho_lista(&tamanho, l);  
+  inicializa_atual_inicio(l);
+
+  for (i = 0; i < tamanho; i++){
+    consulta_item_atual(&item, l);
+    insere_ordenado_lista(item, &auxiliar);
+    incrementa_atual(l);
+  }
+
+  esvazia_lista(l);
+
+  copia_lista(&auxiliar, l);
+
+  return 1;
+
+}
+
+int intercala_listas(t_lista *l, t_lista *m, t_lista *i){
+  
+  int tamanhol, tamanhom, iteml, itemm, menor, j;
+  
+  if (lista_vazia(l) && lista_vazia(m))
+    return 0;
+
+  ordena_lista(l);
+  ordena_lista(m);
+
+  tamanho_lista(&tamanhol, l);
+  tamanho_lista(&tamanhom, m);
+
+  (tamanhol < tamanhom) ? (menor = tamanhol) : (menor = tamanhom);
+
+  inicializa_atual_inicio(l);
+  inicializa_atual_inicio(m);
+
+  for (j = 0; j < menor; j++){
+    consulta_item_atual(&iteml, l);
+    consulta_item_atual(&itemm, m);
+
+    insere_fim_lista(iteml, i);
+    insere_fim_lista(itemm, i);
+
+    incrementa_atual(l);
+    incrementa_atual(m);
+
+    }
+
+  if (tamanhol < tamanhom){
+    for (j = 0; j < tamanhom - tamanhol; j++){
+      consulta_item_atual(&itemm, m);
+      insere_fim_lista(itemm, i);
+      incrementa_atual(m);
+    }
+  } else {
+    for (j = 0; j < tamanhol - tamanhom; j++){
+      consulta_item_atual(&iteml, l);
+      insere_fim_lista(iteml, i);
+      incrementa_atual(l);
+    }
+  }
+
+  return 1;
+}

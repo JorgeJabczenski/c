@@ -1,13 +1,3 @@
-/*
-  Feito por Marcos Castiho para a disciplina CI1001 - Programacao I
-  Em 18/10/2019.
-  Define a estrutura de dados para o Tipo Abstrato de Dados Lista
-  como sendo uma lista duplamente encadeada com sentinelas no inicio
-  e no final. A cabeca da lista tem ponteiros para o inicio, fim e
-  para um elemento qualquer da lista, alem do tamanho da lista.
-  Contem os prototipos publicos das funcoes que manipulam o TAD.
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -130,3 +120,5 @@ int consulta_item_atual(int *item, t_lista *l);
   Retorna 1 se houve sucesso e zero caso contrário.
 */
 int remove_item_atual(int *item, t_lista *l);
+
+void esvazia_lista(t_lista *l);

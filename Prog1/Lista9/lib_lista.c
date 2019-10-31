@@ -89,12 +89,13 @@ int insere_ordenado_lista(int item, t_lista *l){
     l->fim->chave = item; /* Bota a Sentinela do Fim */
 
     p = l->ini->prox;
-    while(p->chave > item){
+    while(p->chave < item){
         p = p->prox;
     }
 
     new->chave = item;
     new->prox = p->prev->prox;
+    new->prev = p->prev;
     p->prev->prox = new;
     new->prox->prev = new;
 
@@ -273,4 +274,14 @@ void destroi_lista(t_lista *l){
     free(l->ini);
     free(l->fim);
 
+}
+
+void esvazia_lista(t_lista *l){
+    int i, item, tamanho;
+
+    tamanho_lista(&tamanho, l);
+
+    for (i = 0; i < tamanho; i++){
+        remove_fim_lista(&item, l);
+    }
 }
