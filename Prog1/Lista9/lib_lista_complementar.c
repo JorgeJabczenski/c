@@ -84,6 +84,7 @@ int ordena_lista(t_lista *l){
   esvazia_lista(l);
 
   copia_lista(&auxiliar, l);
+  destroi_lista(&auxiliar);
 
   return 1;
 

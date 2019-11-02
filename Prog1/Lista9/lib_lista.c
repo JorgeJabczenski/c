@@ -262,7 +262,7 @@ int remove_item_atual(int *item, t_lista *l){
 }
 
 void destroi_lista(t_lista *l){
-
+    
     int lixo, i, tam;
 
     tam = l->tamanho;
@@ -271,8 +271,8 @@ void destroi_lista(t_lista *l){
         remove_inicio_lista(&lixo, l);
 
 
-    free(l->ini);
     free(l->fim);
+    free(l->ini);
 
 }
 
