@@ -73,7 +73,6 @@ int main(){
     destroi_lista(&lista1);
     destroi_lista(&lista2);
     destroi_lista(&lista3);
-    destroi_lista(&lista4);
     destroi_lista(&lista5);
 
     return 0;

@@ -271,8 +271,14 @@ void destroi_lista(t_lista *l){
         remove_inicio_lista(&lixo, l);
 
 
-    free(l->fim);
-    free(l->ini);
+
+    if(l->ini != NULL){
+
+        free(l->fim);
+        free(l->ini);
+    }
+
+    
 
 }
 
