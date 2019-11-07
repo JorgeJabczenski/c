@@ -1,7 +1,7 @@
 #include "lib_fila.h"
 
 
-int inicializa_fila(t_fila *l){
+int inicializa_fila(t_fila *f){
     
     t_nodo *first, *last;
     
@@ -15,167 +15,167 @@ int inicializa_fila(t_fila *l){
         return 0;
     }
     
-    l->ini = first;
+    f->ini = first;
     first->prox = last;
     first->prev = NULL;
 
-    l->fim = last;
+    f->fim = last;
     last->prox = NULL;
     last->prev = first;
     
-    l->atual = NULL;
+    f->atual = NULL;
     
-    l->tamanho = 0;
+    f->tamanho = 0;
 
     return 1;
 }
 
-int fila_vazia(t_fila *l){
-    return ((l->tamanho) ? 0 : 1 );
+int fila_vazia(t_fila *f){
+    return ((f->tamanho) ? 0 : 1 );
 }
 
-int tamanho_fila(int *tam, t_fila *l){
-    *tam = l->tamanho;
-    return 1;
+int tamanho_fila(t_fila *f){
+    return ((f->tamanho) ? (f->tamanho) : -1);
 }
 
-int insere_fila(t_item item, t_fila *l){
+int enfileira(int id, int t, t_fila *f){
 
     t_nodo *new;
     new = (t_nodo *) malloc (sizeof(t_nodo));
     if (new == NULL)
         return 0;
 
-    new->item.chave = item.chave;
-    new->item.prioridade = item.prioridade;
+    new->identificacao = id;
+    new->tempo = t;
 
-    new->prox = l->fim;
-    new->prev = l->fim->prev;
-    l->fim->prev->prox = new;
-    l->fim->prev = new;
+    new->prox = f->fim;
+    new->prev = f->fim->prev;
+    f->fim->prev->prox = new;
+    f->fim->prev = new;
 
-    l->tamanho++;
+    f->tamanho++;
 
     return 1;
 }
 
-int insere_prioridade_fila(t_item item, t_fila *l){
-
-    if (fila_vazia(l))
-        return insere_fila(item, l);
+int desenfileira(int *id, int *t, t_fila *f){
     
-    t_nodo *new, *p;
-
-    new = (t_nodo *) malloc (sizeof(t_nodo));
-    if (new == NULL){
+    if (fila_vazia(f)){
         return 0;
     }
 
-    l->ini->item.prioridade = item.prioridade;
+    *id = f->ini->prox->identificacao;
+    *t  = f->ini->prox->tempo;
 
-    p = l->fim->prev;
-    while(p->item.prioridade > item.prioridade){
-        p = p->prev;
-    }
+    f->ini->prox = f->ini->prox->prox;
+    free(f->ini->prox->prev);
+    f->ini->prox->prev = f->ini;
 
-    new->item.chave = item.chave;
-    new->item.prioridade = item.prioridade;
+    f->tamanho--;
+
+    return 1;
+}
+
+int remove_fila(int *id, int *t, t_fila *f){
     
-    new->prox = p->prox;
-    new->prev = p;
-    p->prox->prev = new;
-    p->prox = new;
+    t_nodo *p;
 
-    l->tamanho++;
-
-    return 1;
-}
-
-int inicializa_atual_inicio(t_fila *l){
-    if (fila_vazia(l)){
+    if (fila_vazia(f)){
         return 0;
     }
 
-    l->atual = l->ini->prox;
+    f->fim->identificacao = *id;
 
-    return 1;
-}
-
-int inicializa_atual_fim(t_fila *l){
-    if (fila_vazia(l)){
+    p = f->ini;
+    while(p->prox->identificacao != *id){
+        p = p->prox;
+    }
+    
+    if (p == f->fim->prev){  /* Chegou na Sentinela sem ter achado o elemento */
         return 0;
     }
 
-    l->atual = l->fim->prev;
+    *t = p->tempo;
+
+    p->prox = p->prox->prox;
+    free(p->prox->prev);
+    p->prox->prev = p;
+
+    f->tamanho--;
 
     return 1;
 }
 
-int incrementa_atual(t_fila *l){
-    if (fila_vazia(l) || l->atual == l->fim->prev){
-        return 0;
-    }
-
-    l->atual = l->atual->prox;
-
-    return 1;
-}
-
-int decrementa_atual(t_fila *l){
-   
-    if (fila_vazia(l) || l->atual == l->ini->prox){
-        return 0;
-    }
-
-    l->atual = l->atual->prev;
-
-    return 1;
-}
-
-int consulta_item_atual(int *item, t_fila *l){
-    if (fila_vazia(l)){
-        return 0;
-    } 
-
-    *item = l->atual->item.chave;
-
-    return 1;
-}
-
-void imprime_fila(t_fila *l){
+void imprime_fila(t_fila *f){
     
     int i, item, tamanho;
 
-    tamanho_fila(&tamanho, l);
+    tamanho = tamanho_fila(f);
     
-    if (fila_vazia(l))
+    if (fila_vazia(f))
         return;
 
-    inicializa_atual_inicio(l);
+    inicializa_atual_inicio(f);
 
     for(i = 0; i < tamanho; i++){
-        consulta_item_atual(&item,l);
+        consulta_item_atual(&item,f);
         printf("%d ", item);
-        incrementa_atual(l);
+        incrementa_atual(f);
     } 
     
     printf("\n");
 
 }
 
-int remove_fila(t_item *item, t_fila *l){
-    
-    if (fila_vazia(l)){
+/*=======================================================*/
+
+int inicializa_atual_inicio(t_fila *f){
+    if (fila_vazia(f)){
         return 0;
     }
 
-    item->chave = l->ini->prox->item.chave;
+    f->atual = f->ini->prox;
 
-    l->ini->prox = l->ini->prox->prox;
-    free(l->ini->prox->prev);
-    l->ini->prox->prev = l->ini;
+    return 1;
+}
 
-    l->tamanho--;
+int inicializa_atual_fim(t_fila *f){
+    if (fila_vazia(f)){
+        return 0;
+    }
+
+    f->atual = f->fim->prev;
+
+    return 1;
+}
+
+int incrementa_atual(t_fila *f){
+    if (fila_vazia(f) || f->atual == f->fim->prev){
+        return 0;
+    }
+
+    f->atual = f->atual->prox;
+
+    return 1;
+}
+
+int decrementa_atual(t_fila *f){
+   
+    if (fila_vazia(f) || f->atual == f->ini->prox){
+        return 0;
+    }
+
+    f->atual = f->atual->prev;
+
+    return 1;
+}
+
+int consulta_item_atual(int *item, t_fila *f){
+    if (fila_vazia(f)){
+        return 0;
+    } 
+
+    *item = f->atual->identificacao;
 
     return 1;
 }

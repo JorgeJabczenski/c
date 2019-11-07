@@ -1,14 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct t_item {
-    int chave;
-    int prioridade;
-}; 
-typedef struct t_item t_item;
-
 struct t_nodo {
-    t_item item;
+    int identificacao;
+    int tempo;
     struct t_nodo *prox;
     struct t_nodo *prev;
 };
@@ -22,26 +17,28 @@ struct t_fila {
 };
 typedef struct t_fila t_fila;
 
-int inicializa_fila(t_fila *l);
+int inicializa_fila(t_fila *f);
 
-int fila_vazia(t_fila *l);
+int fila_vazia(t_fila *f);
 
-int tamanho_fila(int *tam, t_fila *l);
+int tamanho_fila(t_fila *f);
 
-int insere_fila(t_item item, t_fila *l);
+int enfileira(int id, int t, t_fila *f);
 
-int insere_prioridade_fila(t_item item, t_fila *l);
+int desenfileira(int *id, int *t, t_fila *f);
 
-int inicializa_atual_inicio(t_fila *l);
+int remove_fila(int *id, int *t, t_fila *f);
 
-int inicializa_atual_fim(t_fila *l);
+void imprime_fila(t_fila *f);
 
-int incrementa_atual(t_fila *l);
+/*=======================================================*/
 
-int decrementa_atual(t_fila *l);
+int inicializa_atual_inicio(t_fila *f);
 
-int consulta_item_atual(int *item, t_fila *l);
+int inicializa_atual_fim(t_fila *f);
 
-void imprime_fila(t_fila *l);
+int incrementa_atual(t_fila *f);
 
-int remove_fila(t_item *item, t_fila *l);
+int decrementa_atual(t_fila *f);
+
+int consulta_item_atual(int *item, t_fila *f);
