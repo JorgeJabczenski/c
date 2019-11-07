@@ -1,0 +1,2 @@
+gcc -g -ansi -Wall -c lib_fila.c
+gcc -g -ansi -Wall simulacao.c lib_fila.o
