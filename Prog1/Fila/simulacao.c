@@ -91,6 +91,7 @@ int main(){
                 }
             }
 
+            /* Se nao tiver avioes para decolar, pousa um avião extra */
             if (desenfileira(id_decol_desenfileira)
 
         }
