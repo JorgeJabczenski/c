@@ -27,7 +27,7 @@ int enfileira(int id, int t, t_fila *f);
 
 int desenfileira(int *id, int *t, t_fila *f);
 
-int remove_fila(int *id, int *t, t_fila *f);
+int remove_fila(int id, t_fila *f);
 
 void imprime_fila(t_fila *f);
 
@@ -41,4 +41,6 @@ int incrementa_atual(t_fila *f);
 
 int decrementa_atual(t_fila *f);
 
-int consulta_item_atual(int *item, t_fila *f);
+int consulta_id_atual(int *item, t_fila *f);
+
+int consulta_tempo_atual(int *item, t_fila *f);

@@ -76,7 +76,7 @@ int desenfileira(int *id, int *t, t_fila *f){
     return 1;
 }
 
-int remove_fila(int *id, int *t, t_fila *f){
+int remove_fila(int id, t_fila *f){
     
     t_nodo *p;
 
@@ -84,18 +84,16 @@ int remove_fila(int *id, int *t, t_fila *f){
         return 0;
     }
 
-    f->fim->identificacao = *id;
+    f->fim->identificacao = id;
 
     p = f->ini;
-    while(p->prox->identificacao != *id){
+    while(p->prox->identificacao != id){
         p = p->prox;
     }
     
     if (p == f->fim->prev){  /* Chegou na Sentinela sem ter achado o elemento */
         return 0;
     }
-
-    *t = p->tempo;
 
     p->prox = p->prox->prox;
     free(p->prox->prev);
@@ -108,7 +106,7 @@ int remove_fila(int *id, int *t, t_fila *f){
 
 void imprime_fila(t_fila *f){
     
-    int i, item, tamanho;
+    int i, item, tamanho, tempo;
 
     tamanho = tamanho_fila(f);
     
@@ -118,8 +116,9 @@ void imprime_fila(t_fila *f){
     inicializa_atual_inicio(f);
 
     for(i = 0; i < tamanho; i++){
-        consulta_item_atual(&item,f);
-        printf("%d ", item);
+        consulta_id_atual(&item,f);
+        consulta_tempo_atual(&tempo, f);
+        printf("%d(%d) ", item, tempo);
         incrementa_atual(f);
     } 
     
@@ -170,12 +169,22 @@ int decrementa_atual(t_fila *f){
     return 1;
 }
 
-int consulta_item_atual(int *item, t_fila *f){
+int consulta_id_atual(int *item, t_fila *f){
     if (fila_vazia(f)){
         return 0;
     } 
 
     *item = f->atual->identificacao;
+
+    return 1;
+}
+
+int consulta_tempo_atual(int *item, t_fila *f){
+    if (fila_vazia(f)){
+        return 0;
+    } 
+
+    *item = f->atual->tempo;
 
     return 1;
 }
