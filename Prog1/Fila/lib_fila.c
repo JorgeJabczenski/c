@@ -58,13 +58,13 @@ int enfileira(int id, int t, t_fila *f){
     return 1;
 }
 
-int desenfileira(int id, t_fila *f){
+int desenfileira(int *id, t_fila *f){
     
     if (fila_vazia(f)){
         return 0;
     }
 
-    id = f->ini->prox->identificacao;
+    *id = f->ini->prox->identificacao;
 
     f->ini->prox = f->ini->prox->prox;
     free(f->ini->prox->prev);
@@ -126,6 +126,21 @@ void imprime_fila(t_fila *f, int versao){
     } 
 }
 
+void destroi_fila(t_fila *f){
+    
+    int lixo, i, tam;
+
+    tam = f->tamanho;
+
+    for (i = 0; i < tam; i++)
+        desenfileira(&lixo, f);
+
+    if(f->ini != NULL){
+        free(f->fim);
+        free(f->ini);
+    }
+}
+
 /*=======================================================*/
 
 int inicializa_atual_inicio(t_fila *f){
@@ -185,6 +200,16 @@ int consulta_tempo_atual(int *item, t_fila *f){
     } 
 
     *item = f->atual->tempo;
+
+    return 1;
+}
+
+int decrementa_tempo_atual(t_fila *f){
+    if (fila_vazia(f)){
+        return 0;
+    } 
+
+    f->atual->tempo--;
 
     return 1;
 }

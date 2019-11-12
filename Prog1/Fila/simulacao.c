@@ -49,27 +49,46 @@ int main(){
             id_decol_enfileira += 2;
         }
 
-        /*********** Processamento das Informações **********/
+        /*********** Processamento das Informações ***********/
+
+        /* diminui um UT de cada aviao que quer aterrisar */
+        for (j = 0; j < 4; j++){
+            inicializa_atual_inicio(&aterrisagem[j]);
+            tam_fila = tamanho_fila(&aterrisagem[j]);
+            
+            for (k = 0; k < tam_fila; k++){
+                decrementa_tempo_atual(&aterrisagem[j]);
+                incrementa_atual(&aterrisagem[j]);
+            }
+
+        }
 
         /* Ve se algum avião vai cair (tempo = 0) */
-        avioes_caidos = -1;
-        avioes_desesperados = -1;
+        avioes_caidos = 0;
+        avioes_desesperados = 0;
+
         for (j = 0; j < 4; j++){
             tam_fila = tamanho_fila(&aterrisagem[j]);
             inicializa_atual_inicio(&aterrisagem[j]);
+
             for (k = 0; k < tam_fila; k++){
                 consulta_tempo_atual(&tempo_item, &aterrisagem[j]);
-                if ((avioes_desesperados < 2) && (tempo_item == 0)){
+
+                if ((avioes_desesperados <= 2) && (tempo_item == 0)){
                     consulta_id_atual(&id_item, &aterrisagem[j]);
-                    avioes_desesperados++;
                     ids_pousar_urgente[avioes_desesperados] =  id_item;
-                } else if ((avioes_desesperados >= 2) && (tempo_item == 0)){
+                    avioes_desesperados++;
+
+                } else if ((avioes_desesperados > 2) && (tempo_item <= 0)){
                     consulta_id_atual(&id_item, &aterrisagem[j]);
                     avioes_caidos++;
                     id_avioes_caidos[avioes_caidos] = id_item;
                 }
+                incrementa_atual(&aterrisagem[j]);
             }
         }
+
+        printf("QUANTIDADE DE AVIOPES DESESPERADOS: %d \n", avioes_desesperados);
 
         /* Caso tenham 3 aviões necessitados para pousar, pousa os 3 e não decola nenhum*/
         if (avioes_desesperados == 3){
@@ -82,7 +101,10 @@ int main(){
         } else if (avioes_desesperados == 2){ 
             for (j = 0; j < 4; j++){
                 for (k = 0; k < 2; k++){
-                    remove_fila(ids_pousar_urgente[k], &aterrisagem[j]); /* Procura os ids salvos em todas as filas de aterrisagem e retira os elementos */
+                    printf("procurando o id %d na fila %d \n", ids_pousar_urgente[k], j);
+                    if(remove_fila(ids_pousar_urgente[k], &aterrisagem[j])){
+                        printf("ACHEI\n");
+                    } /* Procura os ids salvos em todas as filas de aterrisagem e retira os elementos */
                 }
             }
 
@@ -135,6 +157,8 @@ int main(){
             }
         }
 
+
+
         printf("Unidade de tempo %d\n", i);
         for (j = 0; j < 4; j++){
             printf("fila aterrisagem %d: ", j+1);
@@ -146,13 +170,19 @@ int main(){
             imprime_fila(&decolagem[j], 1);
             printf("\n");
         }
-        printf("numero de aeronaves que aterrisaram sem combustivel: %d\n", avioes_desesperados+1);
+        printf("numero de aeronaves que aterrisaram sem combustivel: %d\n", avioes_desesperados);
         printf("IDS das aeronaves que cairam: ");
         for (j = 0; j < avioes_caidos; j++){
             printf("%d ", id_avioes_caidos[j]);
         } 
         printf("\n");
     }
+
+    for(i = 0; i < 4; i++)
+        destroi_fila(&aterrisagem[i]);
+
+    for(i = 0; i < 3; i++)
+        destroi_fila(&decolagem[i]);
 
     return 0;
 }
