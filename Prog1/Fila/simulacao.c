@@ -6,10 +6,10 @@ int main(){
     t_fila decolagem[3];
 
     int i, j, k; 
-    int rodadas, nr_aterr, temp_aterr, nr_decol, fila_aterr_empilha, fila_decol_empilha, avioes_desesperados;
-    int id_aterr_enfileira, id_decol_enfileira, id_aterr_desenfileira, id_decol_desenfileira, avioes_caidos;
+    int rodadas, nr_aterr, temp_aterr, nr_decol, fila_aterr_empilha, fila_decol_empilha, avioes_desesperados, avioes_caidos;
+    int id_aterr_enfileira, id_decol_enfileira, id_aterr_desenfileira, id_decol_desenfileira;
     int ids_pousar_urgente[3], id_avioes_caidos[100];
-    int id_item, tam_fila, tempo_item ;
+    int id_item, tam_fila, tempo_item;
 
     fila_aterr_empilha = 0;
     fila_decol_empilha = 0;
