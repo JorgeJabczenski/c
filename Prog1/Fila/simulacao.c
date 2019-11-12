@@ -81,8 +81,9 @@ int main(){
 
                 } else if ((avioes_desesperados > 2) && (tempo_item <= 0)){
                     consulta_id_atual(&id_item, &aterrisagem[j]);
-                    avioes_caidos++;
                     id_avioes_caidos[avioes_caidos] = id_item;
+                    avioes_caidos++;
+                    remove_fila(id_item, &aterrisagem[j]);
                 }
                 incrementa_atual(&aterrisagem[j]);
             }
