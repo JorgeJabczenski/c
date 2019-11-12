@@ -6,29 +6,19 @@ int main(){
     t_fila decolagem[3];
 
     int i, j, k; 
-    int rodadas, nr_aterr, temp_aterr, nr_decol, fila_aterr_empilha, fila_decol_empilha,fila_aterr_desempilha, fila_decol_desempilha, aterrisados, alternado, avioes_desesperados;
+    int rodadas, nr_aterr, temp_aterr, nr_decol, fila_aterr_empilha, fila_decol_empilha, avioes_desesperados;
     int id_aterr_enfileira, id_decol_enfileira, id_aterr_desenfileira, id_decol_desenfileira, avioes_caidos;
-    int ids_pousar_urgente[3], id_avios_caidos[100];
-
-    /* 
-    decide se a pista 2 vai ser usada para pouso ou decolagem, alterna a cada rodada de tempo a nao ser que seja necessário pousar 3 aviões, nesse caso ela vai ficar para pouso obrigatoriamente. A pista 1 será destinada sempre para pouso e a pista 3 sera destinada sempre para decolagens (a nao ser igual ao caso da pista 2)
-    */
-    alternado = 0; 
+    int ids_pousar_urgente[3], id_avioes_caidos[100];
+    int id_item, tam_fila, tempo_item ;
 
     fila_aterr_empilha = 0;
     fila_decol_empilha = 0;
-    fila_aterr_desempilha = 0;
-    fila_decol_desempilha = 0;
 
     id_aterr_enfileira = 1;
     id_decol_enfileira = 2;   
 
     id_aterr_desenfileira = 1;
     id_decol_desenfileira = 2;     
-
-    avioes_desesperados = 0;
-    avioes_caidos = 0;
-
 
     /* Inicializa Filas */
     for (i = 0; i < 4; i++)
@@ -56,22 +46,27 @@ int main(){
         for (j = 0; j < nr_decol; j++){
             enfileira(id_decol_enfileira, 0, &decolagem[fila_decol_empilha]);
             fila_decol_empilha = (fila_decol_empilha + 1) % 3; /* Para alternar entre as filas */
+            id_decol_enfileira += 2;
         }
 
         /*********** Processamento das Informações **********/
 
         /* Ve se algum avião vai cair (tempo = 0) */
-        avioes_desesperados = 0;
+        avioes_caidos = -1;
+        avioes_desesperados = -1;
         for (j = 0; j < 4; j++){
-            int tam_fila = tamanho_fila(&aterrisagem[j]);
+            tam_fila = tamanho_fila(&aterrisagem[j]);
             inicializa_atual_inicio(&aterrisagem[j]);
-            for (k = 0; k <tam_fila; k++){
-                int tempo_item;
+            for (k = 0; k < tam_fila; k++){
                 consulta_tempo_atual(&tempo_item, &aterrisagem[j]);
-                if ((avioes_desesperados < 3) && (tempo_item == 0)){
-                    int id_item;
+                if ((avioes_desesperados < 2) && (tempo_item == 0)){
                     consulta_id_atual(&id_item, &aterrisagem[j]);
-                    ids_pousar_urgente[avioes_desesperados++] =  id_item;
+                    avioes_desesperados++;
+                    ids_pousar_urgente[avioes_desesperados] =  id_item;
+                } else if ((avioes_desesperados >= 2) && (tempo_item == 0)){
+                    consulta_id_atual(&id_item, &aterrisagem[j]);
+                    avioes_caidos++;
+                    id_avioes_caidos[avioes_caidos] = id_item;
                 }
             }
         }
@@ -91,12 +86,72 @@ int main(){
                 }
             }
 
-            /* Se nao tiver avioes para decolar, pousa um avião extra */
-            if (desenfileira(id_decol_desenfileira)
+            for (j = 0; j < 3; j++){
+                if (remove_fila(id_decol_desenfileira, &decolagem[j])){
+                    id_decol_desenfileira += 2;
+                    break;
+                } 
+            }
+            
+        /* Caso tenho apenas 1 avião desesperado, tira ele na pista 1, pousa outro na pista 2 e decola um na pista 3*/
+        } else if (avioes_desesperados == 1){
 
+            for (j = 0; j < 4; j++){
+                remove_fila(ids_pousar_urgente[0], &aterrisagem[j]); /* Procura os ids salvos em todas as filas de aterrisagem e retira os elementos */
+            }
+
+            for (j = 0; j < 4; j++){
+                if (remove_fila(id_aterr_desenfileira, &aterrisagem[j])){
+                    id_aterr_desenfileira += 2;
+                    break;
+                } 
+            }
+
+            for (j = 0; j < 3; j++){
+                if (remove_fila(id_decol_desenfileira, &decolagem[j])){
+                    id_decol_desenfileira += 2;
+                    break;
+                } 
+            }
+        /* Caso nao tenha nenhum aviao para cair, pousa dois avioes e decola 1*/
+        } else {
+            for (j = 0; j < 4; j++){
+                if (remove_fila(id_aterr_desenfileira, &aterrisagem[j])){
+                    id_aterr_desenfileira += 2;
+                    break;
+                } 
+            }
+            for (j = 0; j < 4; j++){
+                if (remove_fila(id_aterr_desenfileira, &aterrisagem[j])){
+                    id_aterr_desenfileira += 2;
+                    break;
+                } 
+            }
+            for (j = 0; j < 3; j++){
+                if (remove_fila(id_decol_desenfileira, &decolagem[j])){
+                    id_decol_desenfileira += 2;
+                    break;
+                } 
+            }
         }
-        
 
+        printf("Unidade de tempo %d\n", i);
+        for (j = 0; j < 4; j++){
+            printf("fila aterrisagem %d: ", j+1);
+            imprime_fila(&aterrisagem[j], 0);
+            printf("\n");
+        }
+        for (j = 0; j < 3; j++){
+            printf("fila decolagem %d: ", j+1);
+            imprime_fila(&decolagem[j], 1);
+            printf("\n");
+        }
+        printf("numero de aeronaves que aterrisaram sem combustivel: %d\n", avioes_desesperados+1);
+        printf("IDS das aeronaves que cairam: ");
+        for (j = 0; j < avioes_caidos; j++){
+            printf("%d ", id_avioes_caidos[j]);
+        } 
+        printf("\n");
     }
 
     return 0;

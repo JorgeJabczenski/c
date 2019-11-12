@@ -58,14 +58,13 @@ int enfileira(int id, int t, t_fila *f){
     return 1;
 }
 
-int desenfileira(int *id, int *t, t_fila *f){
+int desenfileira(int id, t_fila *f){
     
     if (fila_vazia(f)){
         return 0;
     }
 
-    *id = f->ini->prox->identificacao;
-    *t  = f->ini->prox->tempo;
+    id = f->ini->prox->identificacao;
 
     f->ini->prox = f->ini->prox->prox;
     free(f->ini->prox->prev);
@@ -104,7 +103,7 @@ int remove_fila(int id, t_fila *f){
     return 1;
 }
 
-void imprime_fila(t_fila *f){
+void imprime_fila(t_fila *f, int versao){
     
     int i, item, tamanho, tempo;
 
@@ -118,12 +117,13 @@ void imprime_fila(t_fila *f){
     for(i = 0; i < tamanho; i++){
         consulta_id_atual(&item,f);
         consulta_tempo_atual(&tempo, f);
-        printf("%d(%d) ", item, tempo);
+        if (versao) {
+            printf("%d ", item);    
+        } else {
+            printf("%d(%d) ", item, tempo);
+        }
         incrementa_atual(f);
     } 
-    
-    printf("\n");
-
 }
 
 /*=======================================================*/
