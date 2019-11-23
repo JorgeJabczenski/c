@@ -5,16 +5,12 @@
 int main(){
 
 	initscr();
-	//noecho();               /* não mostra os caracteres digitados */
-
-	//char k = getch();
-
-	char k;
-	scanf("%c", &k);
-
-	printw("%c\n",k);
-
+	noecho();               /* não mostra os caracteres digitados */
+	cursor(stdscr, FALSE);
+	
+	mvaddch(10,10,ACS_ULCORNER);
 	refresh();
+
 
 	getch();
 	endwin();
