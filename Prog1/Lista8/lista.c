@@ -174,7 +174,7 @@ int concatena_listas(t_lista *l, t_lista *m){
     }
     
     destroi_lista(m);
-
+    free(p);
     return 1;
 }
 
